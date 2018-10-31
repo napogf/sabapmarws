@@ -1,0 +1,1231 @@
+@import url(schede.css);
+@import url(archeoDojo.css);
+@import url(systemDojo.css);
+@import url(djFormStyle.css);
+@import url(opere.css);
+@import url(menuh.css);
+@import url(menu.css);
+@import url(formStyle.css);
+/* @import url(dojoWidgets.css); */
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#appLayout {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background-image: url('cssimg/sfondoMarmo.gif'); */
+    font: 12px Verdana, Tahoma, arial, sans-serif;
+    background-color: #FFFFFF;
+    font-weight: normal;
+}
+
+/* LINK rossi per workflow*/
+
+a.Lred {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold; */
+    color: #FF0000;
+    background: transparent;
+}
+
+a.Lred:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold;*/
+    color: #999999;
+    text-decoration: none;
+    background: transparent;
+}
+
+a.Lblue {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold; */
+    color: #3333FF;
+    background: transparent;
+}
+
+a.Lblue:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold;*/
+    color: #999999;
+    text-decoration: none;
+    background: transparent;
+}
+
+a.Lgreen {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    /* font-weight : bold; */
+    color: #66FF00;
+    text-decoration: none;
+    background: transparent;
+}
+
+a.Lgreen:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold; */
+    color: #999999;
+    text-decoration: none;
+    background: transparent;
+}
+
+/* LINK Standard  Arancioni*/
+
+a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold; */
+    color: #D56F2B;
+    text-decoration: none;
+    background: transparent;
+}
+
+a:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /* font-weight : bold; */
+    color: #999999;
+    text-decoration: none;
+    background: transparent;
+    /* font-size : 10px; */
+}
+
+/* LINK Bianchi fondo pagina */
+
+a.bianco {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: none;
+    background: transparent;
+    font-size: 1em;
+}
+
+a.bianco:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #999999;
+    text-decoration: none;
+    background: transparent;
+    font-size: 1em;
+}
+
+/* LINK Neri titoli delle news */
+
+a.nero {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    background: transparent;
+    padding-right: 3px;
+    font-size: 1em;
+}
+
+a.nero:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #666666;
+    text-decoration: none;
+    background: transparent;
+    padding-right: 3px;
+    font-size: 1em;
+}
+
+table.lista {
+    font-size: 1.1em;
+    color: #000000;
+}
+
+table.ricerca {
+    font-size: 1.1em;
+    color: #000000;
+    background-color: #EEEEF8;
+}
+
+.DbFormTitle {
+    font-size: 1.4em;
+    font-weight: bold;
+    border: groove;
+    text-align: center;
+    margin: 5px;
+    color: rgb(199, 178, 125);
+    background-color: #FFFFFF;
+    border-width: thin medium medium thin;
+    border-color: #333333 #666666 #666666 #333333;
+    padding: 5px;
+}
+
+.DbFormLabel {
+    font-size: 1.1em;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.DbFormField {
+    font-weight: bold;
+}
+
+th.lista {
+    font-size: 1.3em;
+    background-color: #003399;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+th.listapiccolo {
+    font-size: 1em;
+    background-color: #940018;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 3px;
+}
+
+th.ricerca {
+    color: #FFFFFF;
+    background-color: #003399;
+}
+
+.page_counter {
+    font-size: 1em;
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #666666;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.page_counter a, .page_counter a:visited {
+    font-size: 1.2em;
+    color: #940018;
+    text-decoration: none
+}
+
+.page_counter a:hover {
+    text-decoration: none;
+    color: #FFFF00;
+}
+
+.page_counter img {
+    margin: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+td.lista {
+    font-size: 1.2em;
+    background-color: #FFFFFF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+td.lista1 {
+    font-size: 0.9em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+td.lista2 {
+    font-size: 0.9em;
+    background-color: #EEEEF8;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border: #EEEEF8;
+}
+
+td.lista2 a {
+    font-size: 0.9em;
+    font-weight: bold;
+    padding-bottom: 2.5em;
+}
+
+td.lista1 a {
+    font-size: 0.9em;
+    font-weight: bold;
+
+}
+
+td.lista3 {
+    font-size: 1.2em;
+    background-color: #FFE5E5;
+}
+
+td.bianco {
+    color: #FFFFFF;
+}
+
+td.small {
+    font-size: 13px;
+}
+
+td.red {
+    color: #CC3333;
+}
+
+td.smallbold {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+td.lista1_blink {
+    font-size: 14px;
+    color: #FF0000;
+    text-decoration: blink
+}
+
+td.lista2_blink {
+    font-size: 14px;
+    background-color: #EEEEF8;
+    color: #FF0000;
+    text-decoration: blink
+}
+
+td.page_bar {
+    font-size: 10px;
+    color: #0000FF;
+    background-color: #CCCCCC
+}
+
+td.Tlinkdetail {
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: normal;
+    background-color: #003399;
+    border: none
+}
+
+td.lista1_link {
+    font-size: 8pt;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+td.lista2_link {
+    font-size: 8pt;
+    background-color: #EEEEF8;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border: #EEEEF8
+}
+
+td.titolo {
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: normal;
+    background-color: #000000;
+    border: thin #999999 solid
+}
+
+td.detail_rev {
+    font-size: 12pt;
+    background-color: #FFFFE8;
+    color: #999999;
+    text-align: right
+}
+
+a.dir_tree {
+    color: #333333;
+    text-decoration: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+}
+
+a.unselected_folder {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+a.selected_folder {
+    color: #0000FF;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a.menu_links {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.red {
+    color: #CC3333;
+}
+
+a.topbar_bianco {
+    color: #FFFFFF;
+    text-decoration: none
+}
+
+a.topbar_bianco:visited {
+    color: #FFFFFF;
+}
+
+a.topbar_bianco:hover {
+    text-decoration: none;
+    color: #FFFF00;
+}
+
+.topbar_person {
+    padding-right: 5px;
+    color: rgb(199, 178, 125);
+    /**
+        color: #FFFFFF;
+    //*/
+    text-decoration: none;
+}
+
+.topbar_title {
+    /**
+        color: #FFFFFF;
+    //*/
+    color: rgb(199, 178, 125);
+    text-decoration: none;
+    font-size: 18px
+}
+
+.dir_path {
+    font-size: 0.8em;
+    background-color: #CCCCCC
+}
+
+rowClass1 {
+    font-size: 1em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #0000FF
+}
+
+rowClass2 {
+    font-size: 1em;
+    background-color: #BBFFFF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border: #BBFFFF
+}
+
+td.rowClass1 {
+    font-size: 1em;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+td.rowClass2 {
+    font-size: 1em;
+    background-color: #BBFFFF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border: #BBFFFF
+}
+
+td.templ_titolo {
+    padding: 10px;
+    font-size: 1.3em;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #993333;
+    border: thin #999999 solid
+}
+
+td.button_bar {
+}
+
+tbody {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.DbFormMessage {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #FFFFCC;
+    background-position: left;
+    color: #FF0000;
+    margin-top: 5px;
+    margin-bottom: 5px
+}
+
+td.TableTitle {
+    font-size: 1.4em;
+    font-weight: normal;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #FFFFCC;
+    background-position: left;
+    text-align: center
+}
+
+td.AlertMessages {
+    font-size: 1.4em;
+    font-weight: normal;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #FFFFCC;
+    font-style: italic;
+    color: #FF0000;
+    text-align: center;
+    vertical-align: middle;
+    border-style: solid;
+    border-top-width: medium;
+    border-bottom-width: medium
+}
+
+.warning {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0 1in 0 1in; /* superiore destro inferiore sinistro */
+    background-color: yellow;
+    border: solid red 8px;
+    padding: 10px; /* 10 pixel su ogni lato */
+}
+
+td.listapiccolo {
+    font-size: 13px;
+    background-color: #003399;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.LeftMenu {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: x-small;
+    font-weight: bold
+}
+
+.LeftMenuTitle {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #333333;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: medium;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-style: italic;
+    text-align: center
+}
+
+.TableFilter {
+    font-size: 8pt;
+    white-space: nowrap;
+}
+
+.listapiccolo {
+    font-size: 13px;
+    background-color: #003399;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.colsort {
+    font-size: 13px;
+    background-color: #666666;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#fixed {
+    position: static;
+    top: 0px;
+    left: 0px;
+}
+
+.sklabel {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.skfield {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold
+}
+
+.aspettoTitle {
+    white-space: nowrap;
+    font-size: 1.5em;
+    border-bottom: 1px solid #000;
+}
+
+.thumb {
+    width: 80px;
+    min-height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid silver;
+}
+
+.thumb img {
+    padding: 0;
+}
+
+/******** Pratiche *************/
+.praLegend {
+    /* border: 1px solid silver; */
+    margin: 2px;
+    padding: 2px;
+
+}
+
+.praActive {
+    background-color: #EEEEF8;
+    color: black;
+}
+
+.praOpen {
+    background-color: #EEEEF8;
+    color: red;
+}
+
+.praSuspended {
+    background-color: silver;
+    color: white;
+}
+
+.praAllarm {
+    background-color: #EEEEF8;
+    color: black;
+}
+
+.praAlert {
+    background-color: #EEEEF8;
+    color: black;
+}
+
+.praClosed {
+    background-color: #d3d3d3;
+}
+
+.praSearch {
+    float: left;
+    width: 95%;
+    padding-right: 5px;
+    padding-left: 10px;
+    padding-top: 2px;
+    text-align: right;
+}
+
+.praSearch span {
+    padding-left: 5px;
+
+}
+
+.serPlanned {
+    background-color: yellow;
+    color: green;
+}
+
+.serCompleted {
+    background-color: #d3d3d3;
+    margin: 10px;
+    padding: 10px;
+}
+
+.serCompleted p {
+    font-weight: bold;
+    margin: 0px;
+    padding: 2px;
+}
+
+#notes {
+    font-weight: normal;
+    margin: 0px;
+    padding: 2px;
+}
+
+.serCompleted span {
+    display: block;
+    float: left;
+    width: 15em;
+    font-weight: normal;
+}
+
+/* Classi per le tabelle automatiche e non */
+
+caption.etableCaption {
+    text-align: right;
+    background-color: silver;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: yellow;
+    padding-right: 2em;
+
+}
+
+.TableFilter {
+    background-color: #FFFFFF;
+}
+
+.rowClass1 {
+    font-size: 10pt;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.rowClass2 {
+    font-size: 10pt;
+    background-color: #BBFFFF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    border: #BBFFFF
+}
+
+.djSumRow {
+    font-weight: bold;
+    background-color: #E0E0E0;
+}
+
+.conAvvio {
+    background-color: #EEEEF8;
+    color: red;
+}
+
+.conCorso {
+    background-color: #DAA520;
+    color: black;
+}
+
+.conFine {
+    background-color: red;
+    color: black;
+}
+
+.conLiquidato {
+    background-color: silver;
+    color: white;
+}
+
+.conChiuso {
+    background-color: #00FF00;
+}
+
+.mailCert {
+    font-family: cursive;
+}
+
+.mailCert span {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px 10px 5px 5px;
+}
+
+.mailCert p {
+    border: thin 1px gray;
+    font-family: monospace;
+
+}
+
+.mailCert ul {
+    list-style-position: inside;
+    border-top: 1px solid black;
+    padding-right: 20px;
+
+}
+
+.mailCert li {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/binary.gif');
+}
+
+li.pdf {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/pdf.gif');
+}
+
+li.xls {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/msexcel.gif');
+}
+
+li.doc {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/msword.gif');
+}
+
+li.jpg {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.gif {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.png {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.tif {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.bmp {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+.barraRicerca {
+    margin-left: 20px;
+}
+
+.barraRicerca span {
+    padding-left: 5px;
+    padding-rigth: 5px;
+    font-weight: bold;
+}
+
+.pecXml li {
+
+}
+
+.pecXml li span {
+    width: 220px;
+    display: block;
+    float: left;
+    font-size: 1em;
+    margin-left: 30px;
+    padding-rigth: 5px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.pecXml ol span:after {
+    margin-right: 10px;
+    content: ' -> ';
+}
+
+.pecXml li.attributo {
+    color: red;
+}
+
+.pecXml li span:after {
+    margin-right: 10px;
+    content: ': ';
+}
+
+.pecXml ol span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.pecXml ol {
+    margin-left: 30px;
+    list-style: none;
+}
+
+.pecXml ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol ol ol {
+    margin-left: 10px;
+}
+
+.delete {
+    cursor: pointer;
+    background-image: url('../graphics/cross.png');
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    height: 16px;
+    float: right;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.mailCert {
+    font-family: cursive;
+}
+
+.mailCert span {
+    padding: 5px 10px 5px 5px;
+}
+
+.mailCert p {
+    border: thin gray;
+    font-family: monospace;
+}
+
+.mailCert ul {
+    list-style-position: inside;
+    border-top: 1px solid black;
+    padding-right: 20px;
+    line-height: 1, 5em;
+
+}
+
+.mailCert li {
+    padding: 0px;
+    margin: 10px 0px;
+    list-style: none;
+}
+
+.mailCert li span.fa {
+    margin-right: 5px;
+    padding: 0px 5px;
+}
+
+li.pdf {
+    padding: 15px;
+    list-style-image: url('../graphics/mime/pdf.gif');
+}
+
+li.xls {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/msexcel.gif');
+}
+
+li.doc {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/msword.gif');
+}
+
+li.jpg {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.gif {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.png {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.tif {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.bmp {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/image.gif');
+}
+
+li.bin {
+    padding: 5px;
+    list-style-image: url('../graphics/mime/binary.gif');
+}
+
+
+
+#dispPec {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 95%;
+    border: thin solid gray;
+}
+
+.pecXml li {
+
+}
+
+.pecXml li span {
+    width: 220px;
+    display: block;
+    float: left;
+    font-size: 1em;
+    margin-left: 30px;
+    padding-rigth: 5px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.pecXml ol span:after {
+    margin-right: 10px;
+    content: ' -> ';
+}
+
+.pecXml li.attributo {
+    color: red;
+}
+
+.pecXml li span:after {
+    margin-right: 10px;
+    content: ': ';
+}
+
+.pecXml ol span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.pecXml ol {
+    margin-left: 30px;
+    list-style: none;
+}
+
+.pecXml ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol ol {
+    margin-left: 10px;
+}
+
+.pecXml ol ol ol ol ol {
+    margin-left: 10px;
+}
+
+.back {
+    display: block;
+    margin: 5px 13px;
+    padding: 0 0 0 25px;
+    /* line-height: 40px; */
+    font-family: Georgia, serif;
+    text-decoration: none;
+    color: #333;
+    background-color: #EDEFF4;
+    background-repeat: no-repeat;
+    background-position: 5px 0px;
+    background-image: url(../images/back.png);
+    line-height: 16px;
+}
+
+table.altriDestinatari {
+    border: 1px solid #9f9f9f;
+    margin: 5px;
+    padding: 10px;
+}
+
+table.altriDestinatari td {
+    padding: 3px;
+}
+
+table.altriDestinatari .dijitTextBox {
+    width: 300px;
+}
+
+td.label {
+    padding-right: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+
+td.label::AFTER {
+    content: ": ";
+}
+
+.l50 {
+    width: 50px;
+}
+
+.l100 {
+    width: 100px;
+}
+
+.l150 {
+    width: 150px;
+}
+
+.l200 {
+    width: 200px;
+}
+
+.l250 {
+    width: 250px;
+}
+
+.l300 {
+    width: 300px;
+}
+
+.l350 {
+    width: 350px;
+}
+
+.l400 {
+    width: 400px;
+}
+
+.l450 {
+    width: 450px;
+}
+
+.dbFormContainer .protocollazione {
+    float: left;
+}
+
+.dbFormContainer .protocollazione fieldset {
+    margin: 5px 20px;
+    padding: 5px 10px;
+}
+
+.assegnazionePec {
+    float: left;
+    margin-right: 20px;
+}
+
+.dbFormContainer legend {
+    margin-bottom: 10px;
+}
+
+.delete {
+    cursor: pointer;
+    background-image: url('../graphics/cross.png');
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    height: 16px;
+    float: right;
+}
+
+.mouseOn {
+    cursor: pointer;
+}
+
+div#rispostaPec {
+    overflow-y: auto;
+}
+
+table.sendPec {
+    width: 90%;
+    margin: 20px;
+}
+
+td.address {
+    width: 90%;
+}
+
+div.pecInput {
+    width: 100%;
+}
+
+textarea.pecInput {
+    width: 100% !important;
+    min-height: 40px;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+ul.fascicoloPratiche {
+    list-style: none;
+    border-top: 1px solid black;
+    padding-right: 20px;
+    line-height: 1.5em;
+    font-size: 1, 1em;
+    font-weight: 700;
+}
+
+ul.fascicoloPratiche li ul {
+    list-style: none;
+}
+
+ul.fascicoloPratiche li {
+    padding: 5px 25px;
+    line-height: 1em;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+ul.fascicoloPratiche li i.fa {
+    padding: 5px 5px;
+    font-weight: 550;
+}
+
+ul.fascicoloPratiche li ul li i.fa {
+    padding: 5px 25px;
+    color: rgb(213, 11, 43);
+}
+
+div.editMenu {
+    float: right;
+}
+
+div.editMenu a {
+    padding: 2px 10px;
+}
+
+div.editMenu a i {
+    padding-right: 5px;
+}
+
+table.progetto {
+    padding: 10px;
+    margin: 10px;
+}
+
+table.progetto td {
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #026789;
+
+}
+
+iframe#printElement {
+    display: none;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.w200 {
+    width: 200px;
+}
+
+.w300 {
+    width: 300px;
+}
+
+.w400 {
+    width: 400px;
+}
+
+.w500 {
+    width: 500px;
+}
+
+.w600 {
+    width: 600px;
+}
+
+.djCodice {
+    width: 300px;
+}
+
+.djDescrizione, .djTextArea {
+    width: 600px;
+}
+
+#protocollaPec {
+    overflow: auto;
+}
+
+td.mancataConsegna {
+    background-color: red;
+}

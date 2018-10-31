@@ -1,0 +1,322 @@
+#topMenu {
+	margin-top: 2px;
+}
+
+.topBar {
+	/* background-image: url(../html_statico/barra_sitob.jpg); */
+	background-image: url(../immagini/headerImage.jpg);
+	background-position: right top;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	vertical-align: bottom;
+	height: 170px;
+}
+
+
+#topHeader {
+/**
+ * 			background-color: rgb(199, 178, 125);
+ *
+ */
+	height: 82px;
+	width: 100px;
+	padding: 0;
+	margin: 0;
+	vertical-align: bottom;
+
+}
+
+#topLogo{
+	float: left;
+}
+
+#topTitle{
+	vertical-align: top;
+    font-family: Times New Roman, Times, serif;
+	background-position: right top;
+	background-repeat: no-repeat;
+
+    /* font-style: italic;
+	color: rgb(172, 82, 82);
+	color: white;*/
+	text-decoration: none;
+	font-size: 25px;
+	font-style: bold;
+	height: 66px;
+	padding-right: 100px;
+	padding-top: 0px;
+	padding-bottom: 5px;
+	margin-top: 0px;
+	float: right;
+	margin-bottom: 20px;
+}
+
+#topOwner{
+	float: left;
+	padding-top: 2px;
+	padding-right: 5px;
+	text-align: right;
+
+}
+
+#topMenu{
+	clear: right;
+	margin-top: 3em;
+	margin-bottom: 3em;
+
+}
+
+#pageBody{
+	margin-top: 5px;
+
+/**
+ * 	border-width:1px;
+ * 	border-style:solid;
+ * 	border-color:#ccc #888 #555 #bbb;
+ *
+ */
+
+
+}
+
+#immagine {
+	float:left;
+}
+
+
+#header {
+float:left;
+width:100%;
+background:#DAE0D2 url("cssimg/bg.gif") repeat-x bottom;
+font-size:93%;
+line-height:normal;
+text-align: center;
+}
+
+#header ul {
+margin:0;
+padding:10px 10px 0;
+list-style:none;
+text-align: center;
+}
+#header li {
+float:left;
+background:url("cssimg/left.gif") no-repeat left top;
+margin:0;
+padding:0 0 0 9px;
+}
+#header a {
+float:left;
+display:block;
+background:url("cssimg/right.gif") no-repeat right top;
+padding:5px 15px 4px 6px;
+text-decoration:none;
+font-weight:bold;
+color:#765;
+width: 375px;
+text-align: center;
+}
+
+
+/* Commented Backslash Hack
+hides rule from IE5-Mac \*/
+#header a {float:none;}
+/* End IE5-Mac hack */
+#header a:hover {
+color:#333;
+}
+#header #current {
+background-image:url("cssimg/left_on.gif");
+}
+#header #current a {
+background-image:url("cssimg/right_on.gif");
+color:#333;
+padding-bottom:5px;
+}
+
+
+#clear{
+	clear: left;
+}
+
+
+
+#templateBox {
+      overflow: auto;
+      height: 50em;
+      width: 35em;
+      border: solid 1px black;
+      padding: 1ex;
+      background-color: #FFC;
+      color: black;
+      margin-left: 3em;
+	  float: left;
+}
+
+
+#leftImgBox {
+	float: left;
+	vertical-align: top;
+	width: 150px;
+}
+
+#rightImgBox {
+	float: right;
+	vertical-align: top;
+	width: 150px;
+}
+
+
+
+/*   css classes for parse wiki functions */
+
+#wiki {
+	font-size: 13px;
+	font-family: verdana, arial, sans-serif;
+	text-align: justify;
+	background-color: #ffffff;
+	padding: 10px;
+}
+
+#wiki a {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#wiki h1 {
+	margin-left:5em;
+	margin-right:5em;
+	font-size:1.5em;
+	border-top: thin black solid;
+	border-bottom: thin black solid;
+	color: silver;
+}
+
+
+#wiki div.figure {
+  margin: 0 20px 20px 0 ;
+  float: right;
+  border: 1px silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+#wiki div.figure p {
+	margin:0.2em 0 0 0 ;
+	background-color: #F0F0F0 ;
+	padding-top:0;
+	padding-bottom:0;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #993333;
+  text-align: center;
+  font-style: italic;
+  font-size: 1em;
+  text-indent: 0;
+}
+
+div.templ_titolo {
+	text-align: center;
+	font-size: 16px;
+	color: #FFFFFF;
+	font-weight: bold;
+	background-color: #993333;
+	border: thin #999999 solid;
+}
+
+.templ_img {
+	width: 300px;
+	float: left;
+	margin-top: 0;
+	padding: 0;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+}
+.templ_img img {
+
+}
+
+
+.data_titolo {
+	margin:0px;
+	padding: 0px;
+	margin-left: 300px;
+
+	padding-left: 2em;
+	font-size: 1.2em;
+	color: #FFFFFF;
+	background-color: #993333;
+	border: thin #999999 solid
+}
+
+.clearL {
+	clear: left;
+}
+
+
+.templ_box {
+	background-color: #FFFFFF;
+	float: left;
+	position: relative;
+	padding: 10px;
+}
+
+
+.data_lbl {
+	font-style: italic;
+	/* color: #993333; */
+	/* padding-left: 5em; */
+	/* margin-left: 5em; */
+	margin-top:0;
+	margin-bottom:0;
+	padding:0;
+	margin-left: 300px;
+	padding-top: 1em;
+
+}
+
+.data_fld {
+	padding:0;
+	font-weight: bold;
+	font-style: normal;
+}
+
+
+
+.data_caption {
+	margin-top: 1em;
+	padding-left: 1em;
+	font-style: italic;
+	border-top: 1px silver solid;
+	width: auto;
+}
+
+.data_notes {
+	line-height: 1.5em;
+	padding-left: 1em;
+	padding-top: 0;
+}
+
+.textA {
+
+}
+
+.catBrowse {
+	text-align: center;
+	background-color: silver;
+}
+
+.browsecat {
+	text-align: left;
+}
+
+.catbrowseTitle {
+	background-color: silver;
+	color: #993333;
+	font-size: 1.3em;
+	padding: 0px;
+	margin-bottom: 15px;
+}

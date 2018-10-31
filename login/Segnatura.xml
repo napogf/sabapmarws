@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE Segnatura SYSTEM "Segnatura.dtd">
+<Segnatura>
+    <Intestazione>
+        <Identificatore>
+            <CodiceAmministrazione></CodiceAmministrazione>
+            <CodiceAOO></CodiceAOO>
+            <NumeroRegistrazione></NumeroRegistrazione>
+            <DataRegistrazione></DataRegistrazione>
+        </Identificatore>
+        <Origine>
+            <IndirizzoTelematico tipo="smtp"></IndirizzoTelematico>
+            <Mittente>
+                <Amministrazione>
+                    <Denominazione>
+                    </Denominazione>
+                    <CodiceAmministrazione></CodiceAmministrazione>
+                    <UnitaOrganizzativa>
+                        <Denominazione></Denominazione>
+                        <IndirizzoPostale>
+                            <Toponimo dug="Via"></Toponimo>
+                            <Civico></Civico>
+                            <CAP></CAP>
+                            <Comune></Comune>
+                            <Provincia></Provincia>
+                        </IndirizzoPostale>
+                        <IndirizzoTelematico/>
+                        <Telefono></Telefono>
+                        <Fax></Fax>
+                    </UnitaOrganizzativa>
+                </Amministrazione>
+                <Denominazione/>
+                <AOO>
+                </AOO>
+            </Mittente>
+        </Origine>
+        <Destinazione confermaRicezione="si">
+            <IndirizzoTelematico tipo="smtp"></IndirizzoTelematico>
+            <Destinatario>
+                <Amministrazione>
+                    <Denominazione></Denominazione>
+                    <CodiceAmministrazione></CodiceAmministrazione>
+                    <UnitaOrganizzativa>
+                        <Denominazione></Denominazione>
+                        <IndirizzoPostale>
+                            <Toponimo dug="Via"></Toponimo>
+                            <Civico></Civico>
+                            <CAP></CAP>
+                            <Comune></Comune>
+                            <Provincia></Provincia>
+                        </IndirizzoPostale>
+                        <IndirizzoTelematico/>
+                        <Telefono/>
+                        <Fax/>
+                    </UnitaOrganizzativa>
+                </Amministrazione>
+            </Destinatario>
+        </Destinazione>
+        <Oggetto></Oggetto>
+    </Intestazione>
+    <Descrizione>
+        <Documento nome="text/plain" tipoRiferimento="MIME">
+            <Oggetto></Oggetto>
+        </Documento>
+            <Allegati></Allegati>
+    </Descrizione>
+</Segnatura>

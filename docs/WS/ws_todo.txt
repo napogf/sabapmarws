@@ -1,0 +1,87 @@
+#rinominare db o drop database sbapfvg
+create database sbapfvg;
+grant all privileges on sbapfvg.* to sbapfvg@localhost;
+
+//  ATTENZIONE i cami UPDATE E CREATION vanno impostati nullable e aggiornati manualmente
+// in sys_responsabilities, sys_page_functions
+
+#importare il db
+#importare sys_config di test //Per ambiente di test
+
+
+
+# far girare SQL/migrations_sbapvr.sql
+
+
+#php normalizza_protuscita.php
+
+#php update_sospensioni.php
+#php update_fascicoli.php
+
+Tabella PRATICHE
+
+Rigenerare le form
+
+in ManageForms aggiornare la ricerca con:
+MODELLO -> DJSELECT +
+<SQL>select distinct am.MODELLO,concat(am.classificazione,'-',am.description) as DESCRIPTION  from arc_modelli am  order by 2</SQL>
+
+// In setup -> manageForms
+// PROTUSCITA deve selezionare protocollo in uscita
+// numeroregistrazione e dataregistrazione e annullato e project_id - non aggiornabili
+// Pratiche
+
+in Setup -> Manage Forms aggiungere RESPONSABILE_ID, FASCICOLO
+
+
+// Riportare tabella modelli con classifica
+
+
+
+
+// Aggiorna pratica_uscita_id ed inserisce pratiche_fascicoli
+
+
+// php update_fascicoli.php
+// Aggiorna il fascicolo con le sospensioni dopo aver normalizzato la tabella sospensioni
+
+   arc_mittenti e arc_destinazioni come da sbapveor
+
+   allineare titoli anagrafiche in sys_form_validation se non è stato fatto in produzione
+
+        insert into sys_fields_validations (LANGUAGE_ID,FIELD_NAME,VALUE,CODE) VALUES (1, 'tipo_anagrafica' , 'PEC', '10');
+
+        set @posizione = 10;
+        insert into sys_fields_validations (LANGUAGE_ID,FIELD_NAME,VALUE,CODE)
+            select  1, 'tipo_anagrafica' , titoli.TITOLO , @posizione:=@posizione+10 as code from (select DISTINCT  TITOLO FROM pratiche  where titolo is not null and titolo > '') as titoli
+
+
+// Tipi Pratiche
+in Setup -> Manage Forms aggiungere il campo classificazione
+
+// Conversione Tipi pratiche
+- Dal foglio excel Classifiche_TipiPratica_OLD.ods eseguire l'aggiornamento
+- copiare la tabella arc_modelli in arc_modelli_old e arc_documenti troncarla
+- importare le classifiche da crea_nuova_tabella_arc_modelli.sql
+- FAR GIRARE il programma convertProcedimentoPratiche.php
+
+
+// Aggancio Modelli
+copiare tutti i modelli dall'ambiente di produzione
+copiare arc_documenti in arc_documenti_old
+truncate arc_documenti
+#php convertiModelliDocumento.php
+
+
+// arc_pratiche_pec
+Rigenerare Form
+
+
+// Allineare il CODICE UO con quello di ESPI
+
+inserire responsabilità Protocollazione ed assegnarla agli utenti
+La form delle Responsabilità va gestita con dbTable, modificare MENU
+
+
+aggiornare djDeleteProject.php
+

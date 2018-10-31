@@ -1,0 +1,113 @@
+ul#tabnav {
+	font: bold 1em arial, verdana, sans-serif;
+	list-style-type: none;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #6c6;
+	margin: 0;
+}
+
+ul#tabnav li {
+	float: left;
+	height: 21px;
+	background-color: #cfc;
+	margin: 2px 2px 0 2px;
+	border: 1px solid #507cbc;
+	-moz-border-radius: 10px 10px 0 0;
+
+}
+
+
+
+
+div#tab1 li.tab1, body#tab2 li.tab2, body#tab3 li.tab3, body#tab4 li.tab4 {
+	border-bottom: 1px solid #fff;
+	background-color: #fff;
+}
+div#tab1 li.tab1 a, body#tab2 li.tab2 a, body#tab3 li.tab3 a, body#tab4 li.tab4 a {
+	color: #000;
+}
+#tabnav a {
+	float: left;
+	display: block;
+	color: #666;
+	text-decoration: none;
+	padding: 4px;
+	-moz-border-radius: 10px 10px 0 0;
+
+}
+#tabnav a:hover {
+	background: #fff;
+}
+
+
+
+
+.cards {
+	font-size: 10px;
+	background: #FFF;
+	color: #000;
+	margin: 10px 0 0 0;
+	padding: 2px 0 1px 0;
+	border-bottom: 1px solid #000;
+	text-align: right;
+
+}
+
+.cards ul{
+
+	width:11em;
+	padding-bottom:2px;
+}
+
+.cards li {
+	display: inline;
+}
+
+.cards a {
+	padding: 1px 2em;
+	border:1px solid #000;
+	text-decoration: none;
+	margin-top: 2px ;
+	margin-right: 1em;
+	white-space: nowrap;
+
+}
+
+
+
+.cards .selectedCard a {
+	border-bottom: none;
+	padding: 1px 2em 2px;
+}
+
+.cards a:link,
+.cards a:visited{
+	background: #DDD;
+	color: #666;
+}
+
+.cards a:hover,
+.cards a:focus,
+.cards a:active{
+	background: #EEE;
+	color: #000;
+}
+
+.cards .selectedCard a:link,
+.cards .selectedCard a:visited,
+.cards .selectedCard a:hover,
+.cards .selectedCard a:focus,
+.cards .selectedCard a:active{
+	background: #FFF;
+	color: #000;
+}
+
+
+td.listContent {
+	font-size:1.3em;
+	vertical-align: top;
+}
+
+td.listContent a{
+	font-size:1em;
+}

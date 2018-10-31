@@ -1,0 +1,75 @@
+Script - SQL modifiche_pubblicazione_atti.sql
+sostituire nel metodo editForm() la form di uploads dei file con skUploads.inc
+
+in dojoUtils sostituire la finzione InserisciFile
+function inserisciFile() {
+    //Hide the file input field
+    dojo.style('up_FILENAME',"display","none");
+    dojo.style('up_DESCRIPTION',"display","none");
+    dojo.style('up_PUBBLICA',"display","none");
+    //Hide the file input field
+        //Show the progress bar
+    dojo.style('progressField',"display","inline");
+    dojo.byId('preamble').innerHTML = "Uploading ...";
+    //Show the progress bar
+    // dojo.style('progressField',"display","inline");
+    // dojo.byId('preamble').innerHTML = "Uploading ...";
+    
+    
+    dojo.io.iframe.send({
+      url: "uploadsIframeUploads.php",
+      method: "post",
+      handleAs: "text",
+      form: dojo.byId('filesForm'),
+      handle: function(data,ioArgs){
+        var foo = dojo.fromJson(data);
+        if (foo.status == "success"){
+          //Show the file input field
+          dojo.byId('up_FILENAME').value = '';
+          dojo.byId('up_DESCRIPTION').value = '';
+          
+          dojo.style(dojo.byId('up_FILENAME'),"display","inline");
+          dojo.style(dojo.byId('up_DESCRIPTION'),"display","inline");
+          dojo.style(dojo.byId('up_PUBBLICA'),"display","inline");
+          //Hide the progress bar
+          dojo.style(dojo.byId('progressField'),"display","none");
+          dojo.byId('preamble').innerHTML += "Caricato il File: " + foo.details.name
+            + " dimensione: " + foo.details.size +"<br>";
+          dojo.byId('filesForm').reset();
+          dojo.style(dojo.byId('campiPubblicazioneAtto'),'display','none');
+          //refresh image table
+          dijit.byId('dispUploads').refresh();
+          dijit.byId('dispPecs').refresh();
+        } else {
+              dojo.style(dojo.byId('up_FILENAME'),"display","inline");
+              dojo.style(dojo.byId('up_DESCRIPTION'),"display","inline");
+          dojo.style(dojo.byId('progressField'),"display","none");
+          dojo.byId('preamble').innerHTML = data;
+        }
+      },
+      error: function(response, ioArgs){
+          console.log(response);
+          console.log(ioArgs);
+          alert(response);
+        return response;
+      }
+    });
+  }
+
+in djEditPratica.js in addOnLoad
+
+     dojo.connect(dojo.byId('up_pubblica'), 'onchange', function(node) {
+         if(this.checked){
+             dojo.style(dojo.byId('campiPubblicazioneAtto'),'display','block');          
+         }
+     });
+
+in main.css 
+.cursor {
+    pointer: cursor;
+}
+
+in djGetUploads.php
+
+aggiungesr classe cursor alle fa-font
+

@@ -1,0 +1,99 @@
+// create a variable that closures can relate to in addOnLoad and handleSubmits
+// that way we dont have to call dojo.widget.byId multiple times
+dojo.hostenv.writeIncludes();
+var cPane = null;
+
+
+function formTreeEvent(){
+		dojo.event.topic.subscribe("nodeSelected",
+			 function(message) {
+			 	cPane = dojo.widget.byId("formPane");
+			 	var formBar = dojo.widget.byId("formBar");
+			 	var filter = new RegExp("form_");
+			 	if (filter.test(message.node.widgetId)) {
+						cPane.href = "./xml/getFields.php?formId="+RegExp.rightContext;
+						formBar.href = "./xml/getFormBar.php?formId="+RegExp.rightContext;
+						cPane.refresh();
+						formBar.refresh();
+			 	} else {
+			 		var filter = new RegExp("field_");
+			 		if (filter.test(message.node.widgetId)) {
+						cPane.href = "./xml/getFields.php?fieldId="+RegExp.rightContext;
+						formBar.href = "./xml/getFormBar.php?fieldId="+RegExp.rightContext;
+						formBar.refresh();
+						cPane.refresh();
+
+
+			 		} else {
+						cPane.href = "./xml/getFields.php";
+						cPane.refresh();
+			 		}
+			 	}
+			  }
+		);
+}
+
+function formLanguages(formId,languageId){
+	cPane = dojo.widget.byId("formPane");
+	cPane.href = 'djFormLang.php?mode=modify&FORM_ID='+formId+'&LANGUAGE_ID='+languageId+'&dbTable=SYS_FORMS_TITLES';
+	cPane.refresh();
+}
+
+
+function fieldLanguages(fieldId,languageId){
+	cPane = dojo.widget.byId("formPane");
+	cPane.href = 'djFieldLang.php?mode=modify&FIELD_ID='+fieldId+'&LANGUAGE_ID='+languageId+'&dbTable=SYS_FORMS_FIELDS_LABELS';
+	cPane.refresh();
+}
+
+function fieldManagement(fieldId){
+	cPane = dojo.widget.byId("formPane");
+	cPane.href = 'djForm.php?mode=modify&key='+fieldId+'&formName=SYS_FORMS_FIELDS';
+	cPane.refresh();
+}
+function formManagement(formId){
+	cPane = dojo.widget.byId("formPane");
+	cPane.href = 'djForm.php?mode=modify&key='+formId+'&formName=SYS_FORMS';
+	cPane.refresh();
+}
+
+        // set up a listener for form submits inside cPane
+        dojo.addOnLoad(function(){
+            // set the reference for our ContentPane widget to the variable we created before
+            cPane = dojo.widget.byId('formPane');
+            // connect a event listener to contentpane domNode
+            // If IE had decent DOM we could just settle with connecting a onsubmit event
+            // and listen to that when it bubbled up to cPane.domNode,
+            // but onsubmit events doesnt bubble in IE
+            // so we are forced to iterate through document.forms
+            // and create a new FormBind listener each time we load a new content
+            dojo.event.connect(cPane, 'onLoad', 'setUpForm');
+            // on page initial load cPane onLoad isnt called
+            setUpForm();
+
+        });
+
+
+        // handle form submits
+        function setUpForm(){
+            // find out if any of document.forms is a ancestor of cPane.domNode
+            var node = null;
+            for(var i = 0; i < document.forms.length; i++){
+                if(dojo.dom.isDescendantOf(document.forms[i],cPane.domNode)){
+                    node = document.forms[i];
+                    break;
+                }
+            }
+
+            if(node){
+                // create a new FormBind object
+                new dojo.io.FormBind({
+	                    // evt.target is our formNode
+	                    formNode: node,
+	                    load: function(load, data, e) {
+	                    // relay the server response to cPane.setContent
+	                    cPane.setContent(data);
+                    }
+                });
+            }
+        };

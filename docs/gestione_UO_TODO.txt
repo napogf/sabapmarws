@@ -1,0 +1,96 @@
+DROP TABLE IF EXISTS responsabilities;
+create view responsabilities as select * from sys_responsabilities;
+
+DROP TABLE IF EXISTS resp_lang_descriptions;
+create view resp_lang_descriptions as select * from sys_resp_lang_descriptions;
+
+DROP TABLE IF EXISTS user_resp_reference;
+create view user_resp_reference as select * from sys_user_resp_reference;
+
+
+
+CREATE TABLE IF NOT EXISTS `arc_pratiche_uo` (
+  `PRAUOID` int(11) NOT NULL AUTO_INCREMENT,
+  `PRATICA_ID` int(11) NOT NULL,
+  `UOID` int(11) NOT NULL,
+  PRIMARY KEY (`PRAUOID`),
+  UNIQUE KEY `PRATICA_ID_UOID_U` (`PRATICA_ID`,`UOID`),
+  KEY `PRATICA_ID` (`PRATICA_ID`),
+  KEY `UOID` (`UOID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `user_uo_ref` (
+`USER_UO_REF_ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`USER_ID` INT NOT NULL ,
+`UOID` INT NOT NULL ,
+INDEX ( `USER_ID` , `UOID` )
+) ENGINE = InnoDB COMMENT = 'User - UOId reference';
+
+
+CREATE TABLE IF NOT EXISTS `arc_organizzazione` (
+  `UOID` int(11) NOT NULL AUTO_INCREMENT,
+  `TIPO` char(1) COLLATE utf8_bin NOT NULL DEFAULT 'Z',
+  `CODE` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `SIGLA` varchar(120) COLLATE utf8_bin DEFAULT NULL,
+  `MODDESC` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
+  `EMAIL` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`UOID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tabella Zone' AUTO_INCREMENT=45 ;
+
+--
+-- Dump dei dati per la tabella `arc_organizzazione`
+--
+
+INSERT INTO `arc_organizzazione` (`UOID`, `TIPO`, `CODE`, `DESCRIPTION`, `SIGLA`, `MODDESC`, `EMAIL`) VALUES
+(1, 'A', 'ADMIN', 'ADMIN', NULL, NULL, NULL);
+
+INSERT INTO arc_organizzazione (`TIPO`, `CODE`, `DESCRIPTION`, `SIGLA`, `MODDESC`, `EMAIL`) SELECT `TIPO`,`CODE`, `DESCRIPTION`, `SIGLA`, `MODDESC`, `EMAIL` FROM `arc_uffici` WHERE 1;
+INSERT INTO arc_organizzazione (`TIPO`, `CODE`, `DESCRIPTION`, `SIGLA`, `MODDESC`, `EMAIL`) SELECT `TIPO`,`CODE`, `DESCRIPTION`, `SIGLA`, `MODDESC`, `EMAIL` FROM `arc_zone` WHERE 1;
+
+insert into arc_pratiche_uo (pratica_id, uoid) SELECT pratica_id, ao.uoid FROM `pratiche` pr 
+	left join arc_zone az on (az.zona = pr.zona) 
+left join arc_organizzazione ao on (ao.code = az.code)
+where az.zona is not null;
+insert into arc_pratiche_uo (pratica_id, uoid) SELECT pratica_id, ao.uoid FROM `pratiche` pr 
+	left join arc_uffici au on (au.ufficio = pr.ufficio) 
+left join arc_organizzazione ao on (ao.code = au.code)
+where au.ufficio is not null;
+
+
+CREATE TABLE IF NOT EXISTS `user_uo_ref` (
+  `USER_UO_REF_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL,
+  `UOID` int(11) NOT NULL,
+  PRIMARY KEY (`USER_UO_REF_ID`),
+  KEY `USER_ID` (`USER_ID`,`UOID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='User - UOId reference' AUTO_INCREMENT=1 ;
+
+INSERT INTO `user_uo_ref` (`USER_ID`, `UOID`) VALUES
+(1, 1);
+
+
+insert into user_uo_ref (`USER_ID`, `UOID`)
+SELECT `USER_ID`, ao.uoid  FROM `user_uffici_ref` uu 
+left join arc_uffici au on (au.ufficio = uu.ufficio)
+left join arc_organizzazione ao ON (ao.code = au.code)
+where au.ufficio is not null;
+
+insert into user_uo_ref (`USER_ID`, `UOID`)
+SELECT `USER_ID`, ao.uoid  FROM `user_zone_ref` uz
+left join arc_zone az on (az.zona = uz.zona)
+left join arc_organizzazione ao ON (ao.code = az.code)
+where az.zona is not null
+
+
+
+Aggiornare programmi:
+xmlLoadarray.inc
+sys_manage_users.php
+assign_uo.php
+
+
+
+
+
