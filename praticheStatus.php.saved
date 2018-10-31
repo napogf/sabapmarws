@@ -1,0 +1,177 @@
+<?php
+include "login/autentication.php";
+require_once("dbfunctions.php");
+require_once("Etable_c.inc");
+
+class myHtmlETable extends HtmlETable {
+		function SetRowClass($index){
+			$this->_RowClass=$this->GetColValue('rowclass',$index);
+		}
+}
+
+include('pageheader.inc');
+switch ($filter) {
+	case 'open':
+		$whereClause=' and (pr.modello is null or dataarrivo is null) ' .
+					 ' and ((pr.uscita is null) or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) ' ;
+		break;
+	case 'closed':
+		$whereClause=' and (pr.uscita is not null and (pr.uscita > STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) ';
+		break;
+	case 'suspended':
+		$whereClause=' and (vs.sospesa = \'00-00-0000\') ' ;
+		break;
+	case 'allarm':
+		$whereClause=' and  date_add(pr.dataarrivo, INTERVAL (am.scadenza+vs.ggsospensione) DAY) <= now() ' .
+					 ' and ((pr.uscita is null) or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) ' ;
+		break;
+	case 'alert':
+		$whereClause=' and  date_add(pr.dataarrivo, INTERVAL (am.scadenza+vs.ggsospensione-am.allarme) DAY) <= now() ' .
+					 ' and ((pr.uscita is null) or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) ' ;
+		break;
+	default:
+		$whereClause= ((isSet($keyword) and ($keyword > '')) or (isSet($nregFilter) and ($nregFilter > '')) or (isSet($anagFilter) and ($anagFilter > '')))?'':' and ((pr.uscita is null) or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) ';
+		break;
+}
+
+$isAdmin=dbselect('select * from user_zone_ref where zona=1 and user_id='.$sess_uid);
+if (!$isAdmin){
+	$whereClause = 'and (pr.zona in  (select uzr.zona from user_zone_ref uzr where uzr.user_id ='.$sess_uid.') or  ' .
+						'  pr.ufficio in  (select ufr.ufficio from user_uffici_ref ufr where ufr.user_id ='.$sess_uid.') ) '.$whereClause;
+}
+if (isSet($keyword) and ($keyword > '')) {
+	$whereClause = ' and ((pr.cognome REGEXP \''.$keyword.'\') or ' .
+												'(pr.oggetto REGEXP \''.$keyword.'\') or ' .
+												'(pr.comuneogg REGEXP \''.$keyword.'\') ' .
+														') ';
+}
+if (isSet($nregFilter) and ($nregFilter > '')) {
+	$whereClause .= ' and (pr.numeroregistrazione REGEXP \''.$nregFilter.'\' ) ';
+}
+if (isSet($anagFilter) and ($anagFilter > '')) {
+	$whereClause .= ' and (pr.anagrafico REGEXP \''.$anagFilter.'\' ) ';
+}
+
+
+$wk_page=isset($wk_page)?$wk_page:1;
+
+$serviceQuery='select pr.PRATICA_ID, ' .
+						'(case ' .
+							'when (pr.uscita is not null and (pr.uscita > STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) then ' .
+										'concat(\'<img src="graphics/scheda.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Visualizza pratica" >\') ' .
+							'when pr.modello is null then ' .
+										'concat(\'<img src="graphics/CreateDoc.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Imposta tipo pratica" >\') ' .
+							'when pr.dataarrivo is null then ' .
+										'concat(\'<img src="graphics/CreateDoc.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Imposta data di arrivo" >\') ' .
+							'when pr.funzionario is null then ' .
+										'concat(\'<img src="graphics/CreateDoc.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Imposta data al funzionario" >\') ' .
+							'when pr.firma is null then ' .
+										'concat(\'<img src="graphics/CreateDoc.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Imposta data alla firma" >\') ' .
+							'when (pr.uscita is null or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) then ' .
+										'concat(\'<img src="graphics/CreateDoc.gif" style="cursor: pointer" onclick="editPratica(\',pr.PRATICA_ID,\')" title="Imposta data alla firma" >\') ' .
+						'end) as "#", ' .
+						'(case ' .
+							'when (pr.uscita is not null and (pr.uscita > STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\'))) then \'\' ' .
+						'	when pr.anagrafico is null and pr.mappale is null then ' .
+						'	concat(\'<img src="img/alert.png" style="cursor: pointer"  title="Inserire anagrafico e mappale" >\') ' .
+						'else ' .
+						'	concat(\'<img src="img/info.png" style="cursor: pointer" onclick="viewVincoli(\',pr.PRATICA_ID,\')" title="Visualizza Vincoli" >\') ' .
+						'end ) as "Vincoli", ' .
+						'(case ' .
+						'	when (pr.modello is null) then \'praOpen\' ' .
+						'	when pr.dataarrivo is null then \'praOpen\' ' .
+						'	when (vs.sospesa = \'00-00-0000\')  then \'praSuspended\' ' .
+						'	when (pr.uscita is not null and (pr.uscita > STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\')) ) then \'praClosed\' ' .
+						'	when date_add(ifnull(vs.riavvio,pr.dataarrivo), INTERVAL (am.scadenza + vs.ggsospensione) DAY) <= now() then \'praAllarm\' ' .
+						'	when date_add(ifnull(vs.riavvio,pr.dataarrivo), INTERVAL ((am.scadenza + vs.ggsospensione)-am.allarme) DAY) <= now() then \'praAlert\' ' .
+						'end) as rowclass , ' .
+						'pr.numeroregistrazione, ' .
+						'date_format(pr.dataregistrazione,\'%d-%m-%Y\') as "Data Reg.", ' .
+						'pr.condizione as Parere, ' .
+						'am.description as \'Modello\', ' .
+						'au.description as "Ufficio", ' .
+						'pr.comuneogg as "Oggetto", ' .
+						'pr.pnome as "Propietario", ' .
+						'substring(pr.cognome,1,40) cognome, ' .
+						'date_format(pr.dataarrivo,\'%d-%m-%Y\') as "Arrivo", ' .
+//						'date_format(pr.funzionario,\'%d-%m-%Y\') as "Al funz.", ' .
+						'date_format(pr.firma,\'%d-%m-%Y\') as "Alla firma", ' .
+						'date_format(pr.uscita,\'%d-%m-%Y\') as "Uscita", ' .
+						'(case ' .
+						'	when (vs.ggsospensione is null) then date_format(pr.scadenza,\'%d-%m-%Y\') ' .
+						'else date_format(date_add(pr.scadenza, INTERVAL vs.ggsospensione DAY ),\'%d-%m-%Y\')' .
+						'end)  as "Scadenza", ' .
+						'am.allarme, ' .
+						'az.code as zonaCod, ' .
+//						'pr.oggetto, ' .
+						'substring(az.code,1,20) zonaDes ' .
+				'from pratiche pr ' .
+				'left join arc_zone az on (az.zona = pr.zona) ' .
+				'left join arc_uffici au on (au.ufficio = pr.ufficio) ' .
+				'left join arc_modelli am on (am.modello = pr.modello) ' .
+				'left join v_sospensioni vs on (vs.pratica_id = pr.pratica_id) ' .
+				'where 1 ' .
+				$whereClause.
+				' order by pr.dataregistrazione desc, pr.numeroregistrazione ';
+// Legenda
+		print('<div id="topOwner">' ."\n".
+			'<form name=searchForm ' .
+					'onSubmit="javascript: return isNotNull(this.keyword.value)" ' .
+					'action=praticheStatus.php method=get style="margin-bottom: 5px">'."\n".
+			'<INPUT class=textA id=Search value="" size=25 name=keyword ' .
+				'onClick="javascript: document.searchForm.keyword.value =\'\'">' .
+				'&nbsp;Prot.<INPUT class=textA id=Search value="" size=8 maxlength="25" name=nregFilter>' .
+				'&nbsp;Anag.<INPUT class=textA id=Search value="" size=8 maxlength="25" name=anagFilter>' .
+				'&nbsp;<A onclick="javascript: return isNotNull(document.searchForm.keyword.value)" href="javascript:document.searchForm.submit()">'."\n".
+			'<img src="graphics/webapp/20px_search.jpg" width="21" height="20" vspace="1" border="0" align="absbottom" /></A>'.
+			'</form>'."\n".
+				'</div>'."\n");
+
+print('<div class="praLegend" style="text-align: right;">' .
+	  	'Legenda: ' .
+	  		'<span class="praOpen" style="cursor:pointer; padding-left:5px; padding-right:5px;" onClick="location.href=\''.$PHP_SELF.'?filter=open\'">Da classificare</span>' .
+	  		'<span class="praAlert" style="cursor:pointer; padding-left:5px; padding-right:5px;" onClick="location.href=\''.$PHP_SELF.'?filter=alert\'">In scadenza</span>' .
+	  		'<span class="praAllarm" style="cursor:pointer; padding-left:5px; padding-right:5px;" onClick="location.href=\''.$PHP_SELF.'?filter=allarm\'">Scadute</span>' .
+	  		'<span class="praSuspended" style="cursor:pointer; padding-left:5px; padding-right:5px;" onClick="location.href=\''.$PHP_SELF.'?filter=suspended\'">Sospese</span>' .
+	  		'<span class="praClosed" style="cursor:pointer; padding-left:5px; padding-right:5px;" onClick="location.href=\''.$PHP_SELF.'?filter=closed\'">Chiuse</span>' .
+	  '</div>');
+
+
+print('<div style="margin:20px;">');
+
+$serviceTable=new myHtmlETable($serviceQuery);
+if ($serviceTable->getTableRows()>0) {
+
+//	$serviceTable->SetColumnFilter('numeroregistrazione', "filterNreg" ,"TEXT",10);
+//	$serviceTable->SetColumnFilter('cognome', "filterNreg" ,"TEXT",20);
+//	$serviceTable->SetColumnFilter('numeroregistrazione', "filterNreg" ,"TEXT",10);
+//	$serviceTable->SetColumnFilter('numeroregistrazione', "filterNreg" ,"TEXT",10);
+//	$serviceTable->SetColumnFilter('numeroregistrazione', "filterNreg" ,"TEXT",10);
+
+	$serviceTable->HideCol('PRATICA_ID');
+	$serviceTable->HideCol('rowclass');
+	$serviceTable->HideCol('zonaCod');
+	$serviceTable->HideCol('zonaDes');
+	$serviceTable->HideCol('Ufficio');
+	$serviceTable->HideCol('allarme');
+//	$serviceTable->HideCol('Modello');
+	$serviceTable->SetPageDivision(TRUE);
+	$serviceTable->SetColumnHeader('numeroregistrazione','Prot.Nr.');
+	$serviceTable->SetColumnHeader('dataReg','Registrata');
+	$serviceTable->SetColumnHeader('dataArr','Arrivata');
+	$serviceTable->SetColumnHeader('dataSca','Scadenza');
+	$serviceTable->SetColumnHeader('cognome','Mittente');
+	$serviceTable->SetColumnAttribute('numeroregistrazione',' style="text-align: center;" ');
+	$serviceTable->SetColumnAttribute('Vincoli',' style="text-align: center;" ');
+
+
+	//$serviceTable->SetColumnHref('SER_CODE','<a href="serviceManageRequest.php?STATUS=50&SER_ID=#SER_ID#" title="Attiva Intervento">');
+	$serviceTable->show($wk_page);
+} else {
+	print('<h3>Non ci sono Pratiche</h3>');
+}
+print('</div>');
+
+
+include('pagefooter.inc');
+?>

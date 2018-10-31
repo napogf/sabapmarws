@@ -1,0 +1,26 @@
+{
+identifier : "CODE",
+label: "VALUE",
+items: [
+{
+CODE: "",
+VALUE: "-- Tutte --"}
+,
+{
+CODE: "E",
+VALUE: "Entrata"}
+,
+{
+CODE: "U",
+VALUE: "Uscita"}
+,
+{
+CODE: "I",
+VALUE: "Interne"}
+,
+{
+CODE: "A",
+VALUE: "Annullate"}
+]
+}
+

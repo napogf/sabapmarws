@@ -1,0 +1,238 @@
+#Hnav {
+	position: relative;
+	left: 1%;
+	top: 2px;
+	width: 98%;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+
+}
+/* The Htabs - based on the css sliding doors technique */
+
+#Htabs	 	{
+	position:relative;
+	top:0px;
+	left:0px;
+	margin:0px 0px 0px 15%;
+	padding:0px;
+	list-style:none;
+}
+
+#Htabs a  	{
+	display:block;
+	float:left;
+	margin:0px;
+	padding:4px 25px 3px 4px;
+	text-decoration:none;
+		color: white;
+
+
+}
+
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#Htabs a { float:none; }
+/* End IE5-Mac hack */
+
+#Htabs a:link 	{
+	color:#202020;
+}
+
+#Htabs a:visited {
+	color:#202020;
+}
+
+#Htabs a:hover 	{
+	color:#006486;
+	text-decoration:underline;
+}
+
+#Htabs a:active 	{
+	color:#006486;
+}
+
+#Htabs li 	{
+	font-size: 80%;
+	float:left;
+	margin:0px;
+	padding:0px 0px 0px 6px;
+	background:url("cssimg/lb_home-left.gif") no-repeat left top;
+}
+#Htabs li a	{
+	background:url("cssimg/lb_home-right.gif") no-repeat right top;
+	font-weight:bold;
+	color: white;
+}
+
+#Htabs li.selezionata {
+	background:url("cssimg/db_home-left.gif") no-repeat left top;
+}
+
+#Htabs li.selezionata a {
+	background:url("cssimg/db_home-right.jpg") no-repeat right top;
+	font-weight:bold;
+}
+
+#Htabs li.selezionata a:link 		{ color:#fff; }
+#Htabs li.selezionata a:visited 	{ color:#fff; }
+#Htabs li.selezionata a:hover 	{ color:#64bfdb; text-decoration:underline; }
+#Htabs li.selezionata a:active 	{ color:#64bfdb; }
+
+
+
+
+
+#Htabs ul 	{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+
+
+
+/* The blue menubar below the Htabs */
+
+#Hmenu		{
+	background:#026789 url("cssimg/mid.gif") repeat-x bottom;
+	float:left;
+	margin:0px;
+	padding:0px;
+	position:relative;
+	top:-1px;
+	width:99%;
+	color:#fff;
+}
+
+
+
+
+#Hmenu a				{ text-decoration:none; }
+#Hmenu a:link 		{ color:#fff; }
+#Hmenu a:visited		{ color:#fff; }
+#Hmenu a:hover 		{ color:#64bfdb; text-decoration:underline; }
+#Hmenu a:active		{ color:#64bfdb; }
+
+#Hmenu ul				{
+	/* background:#ccc; */
+	list-style:none;
+	margin:0px;
+	padding:0px 0px 0px 1%;
+}
+
+
+#Hmenu li				{
+	font-size: 80%;
+	font-family: verdana, arial, sans-serif;
+	background:url("../tabs/menusep.png") no-repeat center right;
+	float:left;
+	margin:0px;
+	padding:3px 4px 6px 6px;
+}
+
+#Hmenu li a			{
+  color: red;
+	margin:0px;
+	padding:0px 4px 0px 0px;
+	white-space:nowrap;
+}
+
+#Hmenu li.selezionata		{
+	font-weight: bold;
+}
+
+#Hmenu li.selezionata a {
+	color: white;
+	font-weight: bold;
+}
+
+
+
+#Hmenu li strong		{
+	padding:0px 4px 0px 0px;
+	font-weight: bold;
+}
+
+#Hmenu li a strong 	{
+	font-weight: bold;
+	padding:0px;
+}
+
+#Hmenu .spacer {
+	height:  5px ;
+	/*background: #026789; */
+}
+
+#Hmenu .important		{
+	 background: #01506B;
+	 height: 10px;
+}
+
+
+
+/* The submenu */
+
+#subfld			{
+	width:99%;
+	background:url("../tabs/subfld.png");
+	float:left;
+	position:relative;
+	top:-1px;
+}
+#subfld h1		{
+	font-size: 120%;
+	font-weight: normal;
+	line-height: 100%;
+	padding:0px 0px 0px 1.6%;
+	margin: 10px 0px 8px 0px;
+}
+
+#submenu		{
+	background:#026789 url("../tabs/sub.png") repeat-x bottom;
+	float:left;
+	margin:0px;
+	padding:0px;
+	position:relative;
+	top:-1px;
+	width:99%;
+	color:#fff;
+}
+
+#submenu a				{ text-decoration:none; }
+#submenu a:link 		{ color:#fff; }
+#submenu a:visited		{ color:#fff; }
+#submenu a:hover 		{ color:#64bfdb; text-decoration:underline; }
+#submenu a:active		{ color:#64bfdb; }
+
+#submenu ul				{
+	background:#ccc;
+	list-style:none;
+	margin:0px;
+	padding:0px 0px 0px 1%;
+}
+
+#submenu li				{
+	font-size: 80%;
+	background:url("../tabs/menusep.png") no-repeat center right;
+	float:left;
+	margin:0px;
+	padding:3px 4px 7px 6px;
+}
+
+#submenu li a			{
+	margin:0px;
+	padding:0px 4px 0px 0px;
+	white-space:nowrap;
+}
+
+#submenu li strong { padding:0px 4px 0px 0px; }
+
+/* Other */
+
+body.dev #head p			{ color:#fff; }
+body.dev #head p a:link 	{ color:#fff; }
+body.dev #head p a:visited 	{ color:#fff; }
+body.dev #head p a:hover 	{ color:#64bfdb; }
+body.dev #head p a:active 	{ color:#64bfdb; }
+

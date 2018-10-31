@@ -1,0 +1,10 @@
+#
+#--------------------------------------------------------------------------
+# Image Setup
+#--------------------------------------------------------------------------
+# Immagine con installato mail parse compilato a mano e salvata su repo napogf
+#
+#
+
+
+FROM napogf/scapold:workspace

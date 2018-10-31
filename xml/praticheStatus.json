@@ -1,0 +1,39 @@
+{
+  identifier: "CODE",
+  label: "VALUE",
+  items: [
+    {
+      CODE: "mancata_consegna",
+      VALUE: "Pec non consegnate"
+    },
+    {
+      CODE: "active",
+      VALUE: "Attive"
+    },
+    {
+      CODE: "open",
+      VALUE: "Da Classificare"
+    },
+    {
+      CODE: "alert",
+      VALUE: "In Scadenza"
+    },
+    {
+      CODE: "alarm",
+      VALUE: "Scadute"
+    },
+    {
+      CODE: "suspended",
+      VALUE: "Sospese"
+    },
+    {
+      CODE: "tutte",
+      VALUE: "Tutte"
+    },
+    {
+      CODE: "closed",
+      VALUE: "Chiuse"
+    }
+  ]
+}
+

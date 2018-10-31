@@ -1,0 +1,147 @@
+.djBody {
+
+}
+
+#main {
+	margin:0;
+	padding: 2px;
+	height: 99%;
+	width: 99%;
+	position: relative;
+}
+
+
+
+
+#menuTree {
+	overflow: hidden;
+	width: 300px;
+	height: 700px;
+}
+
+#numPages {
+	 background-color:YellowGreen;
+	margin-right: 28px;
+	padding: 3px;
+	text-align: center;
+}
+
+#numPages img {
+	margin-left: 5px;
+}
+
+#archeoPages {
+	padding: 2px;
+	overflow: auto;
+	float: left;
+	width: 320px;
+	height: 700px;
+	font-size: 0.8em;
+}
+
+.listaArcheo {
+	float: left;
+	margin: 2px ;
+	overflow: auto;
+	padding: 0px;
+}
+
+.primaPagina {
+	border: 1px solid silver;
+	margin-left: 48px;
+	text-align: center;
+	vertical-align: middle;
+	width: 120px;
+	padding: 0px;
+}
+
+.primaPagina img {
+	padding: 0pt;
+	margin: 0px;
+}
+
+.primaPagina p {
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+.paginaPari {
+	border: 1px solid black;
+	float: left;
+	min-height: 140px;
+	padding: 2px;
+	text-align: center;
+	vertical-align: middle;
+	/* width: 80px;*/
+	width: 90px;
+	margin: 2px;
+}
+
+.paginaPari img {
+	padding: 0pt;
+}
+
+.paginaPari p {
+	margin: 0pt 0pt 0pt 4px;
+	padding: 0pt;
+	text-align: left;
+}
+
+.paginaDispari {
+	position: relative;
+	border: 1px solid black;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	/* min-height: 140px;*/
+	height: 140px;
+	padding: 2px;
+	width: 90px;
+	margin: 2px;
+
+}
+
+.paginaDispari img {
+	margin: 4px;
+
+}
+
+.paginaDispari p {
+	font-size: 0.8em;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+}
+
+.inv {
+	float: right;
+	position: absolute;
+	padding: 1px;
+	margin: 1px;
+	float:right;
+	bottom: 2px;
+	right: 2px;
+}
+
+
+.dojoFloatingPaneTitleBar {
+	background-color: #ac5959 !important ;
+}
+.dojoFloatingPaneTitleText{
+	color: white !important;
+	font-weight: bold !important;
+}
+
+#footPane {
+	width: 98% ;
+	padding-top:5px;
+	margin-top: 10px;
+	border-top: 2px solid #ac5959;
+	margin-left: 5px;
+	margin-right:20px;
+	margin-bottom: 2px;
+	text-align: center;
+	background-color: white;
+
+}

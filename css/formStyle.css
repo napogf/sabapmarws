@@ -1,0 +1,209 @@
+.dbFormContainer {
+	padding: 0.5em;
+	margin: 0;
+}
+
+.dbFormContainer br {
+	clear: both;
+}
+
+.dbFormContainer span {
+	margin:0;
+	padding:0;
+}
+
+.dbFormContainer form {
+ padding: 0;
+ margin: 0;
+
+}
+
+.dbFormContainer fieldset {
+ clear: both;
+ margin-left: 2em;
+ margin-right: 2em;
+ margin-top: 2em;
+ margin-bottom: 2em;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ padding: 10px 20px 10px 20px;
+}
+
+.dbFormContainer legend {
+	margin-left:2em;
+	margin-top: 0.5em;
+	font-size: 1.2em;
+	font-weight: bold;
+	border: 1px solid #888;
+	border-right: 1px solid #666;
+	border-bottom: 1px solid #666;
+	padding: 0.1em 1.5em 0.1em 1.5em;
+	background-color: #ccc;
+}
+
+
+.dbFormContainer label {
+	width: 220px;
+ 	display: block;
+	float: left;
+	font-weight: bold;
+	margin-right: 10px;
+	margin-left: 10px;
+	text-align: right;
+	margin-bottom: 1em;
+}
+
+#valueRequired {
+	color: red;
+	font-weight: bold;
+}
+
+.dbFormContainer label:after {
+	content: ': ';
+}
+
+.dbFormContainer textarea {
+ margin-bottom: 5px !important;
+}
+
+.dbFormContainer input{
+}
+
+.dbFormContainer .chkval{
+	 border: solid black;
+	 border-width: 1px 2px 2px 1px;
+	margin-left:240px;
+	padding-right: 10px;
+	padding-bottom: 4px;
+}
+.dbFormContainer .chkval p {
+	display: inline;
+	white-space: nowrap;
+}
+
+
+
+.dbFormContainer input.dateButton{
+	display: inline;
+	padding: 0;
+}
+
+.dbFormContainer input[type="text"] {
+ }
+
+.dbFormContainer input[type="file"] {
+
+}
+
+
+.dbFormContainer input[type="submit"] {
+ color: green;
+ width: 150px;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ padding:0;
+ margin:0;
+ margin-left:1em;
+}
+
+.dbFormContainer input[type="submit"]:hover {
+	background-color: cyan;
+}
+
+.dbFormContainer input[type="reset"] {
+ color: red;
+ width: 150px;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ margin:0;
+ margin-right:1em;
+}
+.dbFormContainer input[type="reset"]:hover {
+	background-color: cyan;
+}
+
+
+.dbFormContainer input[type="hidden"] {
+	display: none;
+}
+
+.dbFormContainer input:focus {
+	background-color: cyan;
+}
+
+
+.dbFormContainer select {
+
+}
+
+.dbFormContainer select:focus {
+
+}
+.dbFormContainer option {
+
+}
+.dbFormContainer option.even {
+	color: blue;
+	background-color: red;
+}
+
+/* Fine css per la dbFormExtended */
+
+
+
+
+
+
+/* form attacchment div*/
+.formAttachment {
+	vertical-align: middle;
+	text-align: left;
+	white-space: nowrap;
+	background-color: #EEEEF8;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: #EEEEF8;
+	font-size:0.9em;
+}
+
+/* buttonBar div style*/
+
+
+
+
+.buttonBarLeft{
+	display: block;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	margin:0;
+	float: left;
+	width: auto;
+	/* background-color: #cfdfe5; */
+ border: none;
+ border-width: 0;
+
+}
+
+.buttonBarRight{
+	display: block;
+
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	/* background-color: #cfdfe5; */
+	margin:0;
+	text-align: right;
+	width: auto;
+	float: right;
+ border: none;
+ border-width: 0;
+
+}
+
+
+.dbFormContainer .radioval{
+        margin-left: 240px;
+}
+.dbFormContainer .radioval p {
+        padding-left: 10px;
+        display: inline;
+}
+

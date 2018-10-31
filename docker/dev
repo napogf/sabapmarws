@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+if [ $# -gt 0 ]; then
+    if [ "$1" == "start" ]; then
+	if [ -z "$2" ]; then
+	        docker-compose up -d nginx mysql workspace
+	else
+	        docker-compose up -d $2
+	fi
+    elif [ "$1" == "stop" ]; then
+        if [ -z "$2" ]; then
+                docker-compose down
+        else
+                docker-compose stop $2
+        fi
+    elif [ "$1" == "artisan" ] || [ "$1" == "art" ]; then
+        shift 1
+        docker-compose exec --user=laradock \
+        workspace \
+        php artisan "$@"
+    elif [ "$1" == "composer" ] || [ "$1" == "comp" ]; then
+        shift 1
+        docker-compose exec --user=laradock \
+        workspace \
+        composer "$@"
+    elif [ "$1" == "test" ]; then
+        shift 1
+        docker-compose exec --user=laradock \
+        workspace \
+        ./vendor/bin/phpunit "$@"
+    elif [ "$1" == "npm_no" ]; then
+        # implement node container
+        shift 1
+        docker-compose run --rm \
+        node \
+        npm "$@"
+    elif [ "$1" == "yarn" ]; then
+        # implement node container
+        shift 1
+        docker-compose run --rm \
+        node \
+        yarn "$@"
+    elif [ "$1" == "gulp" ]; then
+        # implement node container
+        shift 1
+        docker-compose run --rm \
+        node \
+        gulp "$@"
+    elif [ "$1" == "npm" ]; then
+        shift 1
+        docker-compose exec \
+        workspace \
+        npm "$@"
+    else
+        docker-compose "$@"
+
+    fi
+
+else
+    docker-compose ps
+fi

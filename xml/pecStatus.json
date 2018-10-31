@@ -1,0 +1,30 @@
+{
+identifier : "CODE",
+label: "VALUE",
+items: [
+{
+CODE: "Z",
+VALUE: "   --------   "}
+,
+{
+CODE: "U",
+VALUE: "Da leggere"}
+,
+{
+CODE: "R",
+VALUE: "Lette"}
+,
+{
+CODE: "P",
+VALUE: "Protocollate"}
+,
+{
+CODE: "A",
+VALUE: "Archiviate"}
+,
+{
+CODE: "T",
+VALUE: "Tutte"}
+]
+}
+

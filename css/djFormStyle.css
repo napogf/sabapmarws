@@ -1,0 +1,261 @@
+.djFormContainer {
+	font-size: 10px;
+	padding: 0.5em;
+	margin: 0;
+}
+
+.djFormContainer br {
+	clear: both;
+}
+
+.djFormContainer span {
+	margin:0;
+	padding:0;
+}
+
+.djFormContainer form {
+ padding: 0;
+ margin: 0;
+
+}
+
+.djFormContainer fieldset {
+ clear: both;
+ margin-left: 2em;
+ margin-right: 2em;
+ margin-top: 5px;
+ margin-bottom: 5px;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ padding: 5px;
+ font-size: 1.1em;
+}
+
+
+
+.djFormContainer legend {
+	margin: 0.5em 2em 0.5em 2em;
+	font-size: 1.2em;
+	font-weight: bold;
+	border: 1px solid #888;
+	border-right: 1px solid #666;
+	border-bottom: 1px solid #666;
+	padding: 0.1em 1.5em 0.1em 1.5em;
+	background-color: #ccc;
+}
+
+
+.djFormContainer label {
+	width: 120px;
+ 	display: block;
+	float: left;
+	font-weight: bold;
+	margin-right: 10px;
+	margin-left: 10px;
+	text-align: right;
+	margin-bottom: 1em;
+}
+
+#valueRequired {
+	color: red;
+	font-weight: bold;
+}
+
+.djFormContainer label:after {
+	content: ': ';
+}
+
+.djFormContainer textarea {
+
+}
+
+.djFormContainer input{
+}
+
+.djFormContainer .chkval{
+	 border: solid black;
+	 border-width: 1px 2px 2px 1px;
+	margin-left:240px;
+	padding-right: 10px;
+	padding-bottom: 4px;
+}
+.djFormContainer .chkval p {
+	display: inline;
+	white-space: nowrap;
+}
+
+
+
+.djFormContainer input.dateButton{
+	display: inline;
+	padding: 0;
+}
+
+.djFormContainer input[type="text"] {
+ 
+}
+
+.djFormContainer input[type="file"] {
+ 
+}
+
+
+.djFormContainer input[type="submit"] {
+ color: green;
+ width: 150px;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ padding:0;
+ margin:0;
+ margin-left:1em;
+}
+
+.djFormContainer input[type="submit"]:hover {
+	background-color: #87CEFA;
+}
+
+.djFormContainer input[type="reset"] {
+ color: red;
+ width: 150px;
+ border: solid black;
+ border-width: 1px 2px 2px 1px;
+ margin:0;
+ margin-right:1em;
+}
+.djFormContainer input[type="reset"]:hover {
+	background-color: #87cefa;
+}
+
+
+.djFormContainer input[type="hidden"] {
+	display: none;
+}
+
+.djFormContainer input:focus {
+	background-color: #87CEFA;
+}
+
+
+.djFormContainer select {
+	 border: solid black;
+	 border-width: 1px 2px 2px 1px;
+}
+
+.djFormContainer select:focus {
+
+}
+.djFormContainer option {
+
+}
+.djFormContainer option.even {
+	color: blue;
+	background-color: red;
+}
+
+/* Fine css per la dbFormExtended */
+
+
+
+
+
+
+/* form attacchment div*/
+.formAttachment {
+	vertical-align: middle;
+	text-align: left;
+	white-space: nowrap;
+	background-color: #EEEEF8;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: #EEEEF8;
+	font-size:0.9em;
+}
+
+/* buttonBar div style*/
+
+
+
+
+.djButtonBarLeft{
+	display: block;
+	padding: 0px;
+	margin:0px;
+	float: left;
+	width: auto;
+	/* background-color: #cfdfe5; */
+ border: none;
+ border-width: 0px;
+
+}
+
+.djButtonBarRight{
+	display: block;
+	padding: 0px;
+	margin:0px;
+	float: right;
+	width: auto;
+	/* background-color: #cfdfe5; */
+ 	border: none;
+ 	border-width: 0px;
+
+
+}
+
+
+.djToolTipContainer {
+	width: 350px;
+	font-size: 12px;
+	padding: 0.5em;
+	margin: 0;
+}
+
+.djToolTipContainer br {
+	clear: both;
+	margin-bottom: 2px;
+}
+
+.djToolTipContainer span {
+	margin:0;
+	padding:0;
+}
+
+.djToolTipContainer form {
+ padding: 0;
+ margin: 0;
+
+}
+
+.djToolTipContainer fieldset {
+ clear: both;
+ margin: 2px;
+ border-top: solid black;
+ padding: 5px;
+}
+
+.djToolTipContainer legend {
+	margin: 0.5em 2em 0.5em 2em;
+	font-size: 1.2em;
+	font-weight: bold;
+	border: 1px solid #888;
+	border-right: 1px solid #666;
+	border-bottom: 1px solid #666;
+
+	padding: 0.1em 1.5em 0.1em 1.5em;
+	background-color: #ccc;
+}
+
+
+.djToolTipContainer label {
+	width: 120px;
+ 	display: block;
+	float: left;
+	font-weight: bold;
+	margin-right: 20px;
+	margin-left: 2px;
+	text-align: right;
+	margin-bottom: 2px;
+}
+
+
+.djToolTipContainer label:after {
+	content: ': ';
+}
