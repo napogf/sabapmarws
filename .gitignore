@@ -7,10 +7,10 @@ tmp
 pecmail
 trasparenza
 logs
-SQL
 vincoli
 .buildpath
 .project
 .settings/
 archivio
 .idea
+.laradock
