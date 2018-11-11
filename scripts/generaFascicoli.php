@@ -25,8 +25,8 @@ try {
                      ',
                     [
                         ':fascicolo_id' => $fascicolo,
-                        ':pratica_id' => $pratica['pratica_id'],
-                        ':protouscita' => $pratica['protouscita'],
+                        ':pratica_id' => (integer) $pratica['pratica_id'],
+                        ':protouscita' => (integer) $pratica['protouscita'],
                     ]);
 
         }

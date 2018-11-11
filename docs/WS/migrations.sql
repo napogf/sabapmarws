@@ -131,7 +131,9 @@ ALTER TABLE `pratiche` CHANGE `DATASTMP` `DATASTMP` DATE NULL DEFAULT NULL;
 
 
 # ALTER TABLE `pratiche` DROP `PRATICA_USCITA_ID`;
+
 ALTER TABLE pratiche ADD COLUMN MAIL_SENT_ID varchar(255) DEFAULT NULL;
+ALTER TABLE pratiche ADD COLUMN PRATICA_USCITA_ID int(11) unsigned DEFAULT NULL;
 
 ALTER TABLE pratiche ADD INDEX MAIL_SENT_ID (MAIL_SENT_ID);
 ALTER TABLE pratiche ADD INDEX FALDONE (FALDONE);
@@ -187,42 +189,6 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `sys_config`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `chiave` tinytext CHARACTER SET latin1 COLLATE latin1_general_ci,
-  `valore` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `sys_config`
---
-
-INSERT INTO `sys_config` (`id`, `chiave`, `valore`) VALUES
-  (1, 'PEC_HOSTNAME', 'in.telecompost.it'),
-  (2, 'PEC_HOSTPORT', '993'),
-  (3, 'PEC_USERNAME', 'mbac-sabap-ve-met@mailcert.beniculturali.it'),
-  (4, 'PEC_PASSWORD', 'Certificata-2016a'),
-  (5, 'WS_UserID', 'WS_SBAP_VEBPT'),
-  (6, 'WS_Password', 'WS_Sb893$K'),
-  (7, 'WS_CodUtenteProtocollatore', 'WS_SBAP_VEBPT'),
-  (8, 'WS_C_DES_AOO', 'MBAC-SBAP-VEBPT'),
-  (9, 'WS_CodUfficioCompetente', 'SBAP-VEBPT'),
-  (10, 'WS_debug', '1'),
-  (11, 'KEY_SOPRINTENDENTE', 'Arch. Andrea Alberti'),
-  (12, 'PEC_SMTPPORT', '25'),
-  (13, 'PEC_SMTPHOST', 'smtp.telecompost.it'),
-  (14, 'MOD_MINISTERO_ORIZZONTALE', 'Ministero dei beni e delle attività culturali e del turismo'),
-  (15, 'MOD_MINISTERO', 'Ministero dei beni e delle attività\r\nculturali e del turismo'),
-  (16, 'MOD_SOPRINTENDENZA', 'SOPRINTENDENZA ARCHEOLOGIA BELLE ARTI E PAESAGGIO PER L\'AREA METROPOLITANA DI VENEZIA E LE PROVINCE DI BELLUNO, PADOVA E TREVISO'),
-  (17, 'KEY_FIRMA', 'SEDE DI PADOVA: Palazzo Folco - Via Aquileia 7 - 35139 Padova - Tel. 049/8243811 - Fax 049/8754647\r\nSEDE DI VENEZIA: Palazzo Soranzo Cappello - S.Croce 770 - 30135 Venezia - Tel. 041/2574011 - Fax 041/2750288\r\ne-mail: sabap-ve-met@beniculturali.it - pec: mbac-sabap-ve-met@mailcert.beniculturali.it'),
-  (18, 'SEGNATURA_Provincia', 'PD'),
-  (19, 'SEGNATURA_Comune', 'Padova'),
-  (20, 'SEGNATURA_CAP', '35139'),
-  (21, 'SEGNATURA_Civico', '7'),
-  (22, 'SEGNATURA_Toponimo', 'Via Aquileia'),
-  (23, 'SEG_XML_CODAOO', 'MBAC-SABAP-VEBPT'),
-  (24, 'SEG_XML_DESAOO', 'SOPRINTENDENZA ARCHEOLOGIA BELLE ARTI E PAESAGGIO PER L\'AREA METROPOLITANA DI VENEZIA E LE PROVINCE DI BELLUNO, PADOVA E TREVISO');
 
 
 

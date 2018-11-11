@@ -1,20 +1,19 @@
 <?php
 include "login/autentication.php";
-//require_once("dbfunctions.php");
-//require_once("Etable_c.inc");
-//require_once("fdataentry.php");
-if (!empty($_POST['VINCOLO_ID'])) {
+require_once("dbfunctions.php");
+require_once("Etable_c.inc");
+require_once("fdataentry.php");
+if (!empty($buttapp)) {
 	if (!is_null($_POST['VINCOLO_ID']) and !is_null($_POST['PRATICA_ID'])) {
-// 		r($_POST);
 		$sql = 'update pratiche set VINCOLO_ID = '.$_POST['VINCOLO_ID'].' where pratica_id = '.$_POST['PRATICA_ID'];
 		dbupdate($sql);
 	}
-	 header("Location: editPratica.php?PRATICA_ID=".$_POST['PRATICA_ID']);
+	 header("Location: editPratica.php?PRATICA_ID=$PRATICA_ID");
 }
 
-$wk_page=isset($_GET['wk_page'])?$_GET['wk_page']:1;
+$wk_page=isset($wk_page)?$wk_page:1;
 
-class myHtmlETable extends htmlETable {
+class myHtmlETable extends HtmlETable {
 
 }
 
@@ -58,9 +57,9 @@ include('pageheader.inc');
 
 		print ('<div style="background-color: azure; font-size: 1.5em; margin-top:20px; margin-bottom:5px;">' . $formTitle . '</div>' . "\n");
 		print('<div id="topOwner" >' ."\n".
-			'<form name=searchForm method="POST" ' .
+			'<form name=searchForm ' .
 					'onSubmit="javascript: return isNotNull(this.keyword.value)" ' .
-					'action=praticaVincoli.php?PRATICA_ID=' . $_GET['PRATICA_ID'] . '&mode=search method=post style="margin-bottom: 5px">'."\n");
+					'action=praticaVincoli.php?mode=search method=post style="margin-bottom: 5px">'."\n");
 
 		print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
 		'url="xml/jsonSql.php?sql=select SIGLA, PROVINCIA from arc_province " ' .
@@ -125,13 +124,11 @@ $wk_page=isset($wk_page)?$wk_page:1;
 
 if($_GET['mode']=='search'){
 	if (($_POST['partFilter'] > '')) {
-		$whereClause .= ' and ((av.particelle REGEXP \''.$_POST['partFilter'].'\' ) OR
-		                        (av.modifichecatastali REGEXP \''.$_POST['partFilter'].'\' ))';
+		$whereClause .= ' and (av.particelle REGEXP \''.$_POST['partFilter'].'\' ) ';
 	}
 } else {
 	if (isSet($partFilter) and ($partFilter > '')) {
-		$whereClause .= ' and ((av.particelle REGEXP \''.$partFilter.'\' ) OR 
-                                (av.modifichecatastali REGEXP \''.$partFilter.'\' ))';
+		$whereClause .= ' and (av.particelle REGEXP \''.$partFilter.'\' ) ';
 	}
 }
 
@@ -160,19 +157,20 @@ if($_GET['mode']=='search'){
 	}
 } else {
 	if (isSet($SIGLA) and ($SIGLA > '')) {
-		$whereClause .= ' and (av.provincia = "'.$SIGLA.'"  ) ';
+		$whereClause .= ' and (av.provincia = \''.$SIGLA.'\'  ) ';
 	}
 }
 if($_GET['mode']=='search'){
 	if (($_POST['COMUNE'] > '')) {
-		$whereClause .= ' and (av.comune REGEXP "'.$_POST['COMUNE'].'" ) ';
+		$whereClause .= ' and (av.comune = \''.$_POST['COMUNE'].'\' ) ';
 	}
 } else {
 	if (isSet($COMUNE) and ($COMUNE > '')) {
-		$whereClause .= ' and (av.comune REGEXP "'.$COMUNE.'" ) ';
+		$whereClause .= ' and (av.comune = \''.$COMUNE.'\' ) ';
 	}
 }
-
+$charset = mysql_client_encoding($linkDB);
+mysql_set_charset('utf8',$linkDB);
 	$vincoliQuery='select distinct ' .
 						"concat('<input type=\"radio\" name=\"VINCOLO_ID\" value=\"',av.vincolo_id,'\" ',
 								   (case when pr.VINCOLO_ID is null then ''
@@ -183,9 +181,9 @@ if($_GET['mode']=='search'){
 						'av.localita as "Loc.",  ' .
 						'av.provincia as PR,  ' .
 						'av.fogliocatastale as Foglio,  ' .
-						'concat(\'<span id="vinc\',av.vincolo_id,\'">\',substr(concat(av.particelle," ",av.modifichecatastali),1,10),\'...</span>' .
+						'concat(\'<span id="vinc\',av.vincolo_id,\'">\',substr(av.particelle,1,10),\'</span>' .
 									'<span dojoType="dijit.Tooltip" id="ttVinc\',av.vincolo_id,\'" connectId="vinc\',av.vincolo_id,\'" style="display:none;">' .
-									'<div class="djToolTipContainer" >\',av.particelle," ",av.modifichecatastali,\'</div></span>\') ' .
+									'<div class="djToolTipContainer" >\',av.particelle,\'</div></span>\') ' .
 						'as "Particelle", ' .
 						'trim(concat(av.ubicazioneinit,\' \',av.ubicazioneprinc)) as Indirizzo,' .
 						'av.vincolodiretto as D,  ' .
@@ -195,7 +193,7 @@ if($_GET['mode']=='search'){
 						'av.posizioneMonumentale as "Pos.Mon.",  ' .
 						'av.posizioneVincoli as "Pos.Vinc."' .
 						'from vincoli av ' .
-						'left join pratiche pr on ((pr.VINCOLO_ID = av.vincolo_id) and (pr.pratica_id='.$_GET['PRATICA_ID'].')) ' .
+						'left join pratiche pr on ((pr.VINCOLO_ID = av.vincolo_id) and (pr.pratica_id='.$PRATICA_ID.')) ' .
 						'where 1 '.$whereClause;
 
 
@@ -237,8 +235,8 @@ if($_GET['mode']!='search'){
 	}
 } else {
 
-	print('<FORM ACTION="'.$PHP_SELF.'?mode='.$_GET['mode'].'"  METHOD="POST" name="AssociateMenuRespId">'."\n");
-	print('<input type="hidden" name="PRATICA_ID" value="'.$_GET['PRATICA_ID'].'" >');
+	print('<FORM ACTION="'.$PHP_SELF.'?mode='.$mode.'"  METHOD="POST" name="AssociateMenuRespId">'."\n");
+	print('<input type="hidden" name="PRATICA_ID" value="'.$PRATICA_ID.'" >');
 
 	$vincoliTable=new myHtmlETable($vincoliQuery);
 	if ($vincoliTable->getTableRows()>0) {

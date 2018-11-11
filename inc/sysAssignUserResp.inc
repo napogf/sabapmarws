@@ -57,17 +57,14 @@ print('<div class="formContainer">'."\n");
 	print('<TR>');
 	print('<TD align="center" >');
 
-	$responsability_query="SELECT resp_lang_descriptions.description as resp,
-								concat('<input type=\"checkbox\" name=\"RESPONSABILITY_ID[]\" value=\"',responsabilities.resp_id,'\" ',
+	$responsability_query="SELECT sys_responsabilities.description as resp,
+								concat('<input type=\"checkbox\" name=\"RESPONSABILITY_ID[]\" value=\"',sys_responsabilities.resp_id,'\" ',
 								   (case when urr.user_id is null then ''
 								   		 when urr.user_id is not null then 'checked'
 									end),'>') as assign
-								  FROM (responsabilities, resp_lang_descriptions)
-								 left join user_resp_reference urr on ((urr.resp_id=responsabilities.resp_id)
-								        							AND (urr.user_id = '".$_GET['USER_ID']."' ))
-								 WHERE (    (responsabilities.resp_id = resp_lang_descriptions.resp_id)
-								        AND (resp_lang_descriptions.language_id = '" . $_SESSION['sess_lang'] . "')
-								       )";
+								  FROM sys_responsabilities
+								 left join sys_user_resp_reference urr on ((urr.resp_id=sys_responsabilities.resp_id)
+								        							AND (urr.user_id = '".$_GET['USER_ID']. "' ))";
 // r($responsability_query);
 	$selectTable = new htmlTable($responsability_query);
 	$selectTable->SetWidth('80%');
