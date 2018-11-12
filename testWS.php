@@ -1,5 +1,5 @@
 <?php
-include 'login/configsess.php';
+//include 'login/configsess.php';
 error_reporting(E_ALL);
 
 $arrContextOptions=array(
@@ -24,7 +24,7 @@ $opts = array(
 $streamContext = stream_context_create($opts);
 
 $test =file_get_contents("https://10.199.3.4/WSProtEspiVX/wsespiaspvx.asmx?WSDL", false, $streamContext);
-r($test,false);
+var_dump($test);
 
 
 $ws = new EspiWS();
@@ -32,6 +32,6 @@ $ws = new EspiWS();
 $test = $ws->testWs('Test_MTA_STA');
 
 
-r($test);
+var_dump($test);
 
 
