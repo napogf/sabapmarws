@@ -21,18 +21,6 @@ class formUscita extends formPratica
 
 
 
-//         if(!$sospensione = Db_Pdo::getInstance()->query('SELECT * FROM arc_sospensioni WHERE pratica_id = :pratica_id OR protouscita = :pratica_id OR protoentrata = :pratica_id',[
-//                 ':pratica_id' => $_GET['PRATICA_ID']
-//                 ])->fetch()){
-//             /*
-//              * La pratica non è sospesa ne ha sospeso o riattivato un altra pratica perciò puo essere sospesa o riprendere una pratica sospesa
-//             */
-//             print ('<a href="?sospensione=Y&PRATICA_ID=' . $_GET['PRATICA_ID'] .'"><i class="fa fa-pause"> </i>Sospendi Procedimento</a>');
-//             print ('<a href="praticaRiattivazione.php?PRATICA_ID=' . $this->_FormFields['PRATICA_ID']->GetValue() . '"><i class="fa fa-play"> </i>Riprendi Procedimento</a>');
-
-//         }
-
-//         print ('<a href="praticaVincoli.php?PRATICA_ID=' .  $this->_FormFields['PRATICA_ID']->GetValue() .'"><i class="fa fa-link"> </i>Vincoli</a>');
 
 
         print ('</div>' . "\n");

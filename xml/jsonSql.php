@@ -12,9 +12,12 @@ $whereResult = '';
 
 
 function makeWhere($getArray){
+
 	$qPrefix=' where ';
 	foreach($getArray as $key=>$value){
-		if($key!='sql' and $key != 'start' and $key != 'count' ){
+        $whereResult = '';
+
+        if($key!='sql' and $key != 'start' and $key != 'count' ){
 			str_replace('*','%',$value);
 			$whereResult .= $qPrefix."$key='$value' ";
 			$qPrefix=' and ';

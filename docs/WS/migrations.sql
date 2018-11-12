@@ -285,25 +285,6 @@ create view user_resp_reference as SELECT * FROM `sys_user_resp_reference` WHERE
 
 
 
-DROP TABLE IF EXISTS `arc_pratiche_pec`;
-CREATE TABLE `arc_pratiche_pec` (
-  `PEC_ID` int(11) NOT NULL,
-  `PRATICA_ID` int(11) UNSIGNED DEFAULT NULL,
-  `NUMEROREGISTRAZIONE` varchar(25) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `DATAREGISTRAZIONE` date DEFAULT NULL,
-  `DATAARRIVO` date NOT NULL,
-  `MAIL_HASH` varchar(40) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `MAIL_ID` tinytext CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `MITTENTE` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `SUBJECT` text CHARACTER SET latin1 COLLATE latin1_general_ci,
-  `STATUS` enum('U','R','A') NOT NULL DEFAULT 'U',
-  `suapente` varchar(255) DEFAULT NULL,
-  `UPDATED` date NOT NULL,
-  `UPDATED_BY` int(11) NOT NULL,
-  `CREATION_DATETIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `FOLDER` enum('INBOX','SENT') NOT NULL DEFAULT 'INBOX'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Indici per le tabelle scaricate
 --
@@ -311,6 +292,9 @@ CREATE TABLE `arc_pratiche_pec` (
 --
 -- Indici per le tabelle `arc_pratiche_pec`
 --
+ALTER TABLE arc_pratiche_pec ADD suapente varchar(255) NULL;
+ALTER TABLE arc_pratiche_pec ADD TYPE enum('pec', 'mail') DEFAULT 'pec' NOT NULL;
+
 ALTER TABLE `arc_pratiche_pec`
   ADD PRIMARY KEY (`PEC_ID`),
   ADD KEY `pec_mail_hash_idx` (`MAIL_HASH`),
