@@ -1,6 +1,6 @@
 <?php
 class vincoliHtmlETable extends htmlETable {
-		private $_vincoliChecked = array();
+		protected $_vincoliChecked = array();
 
 		function vincoliSelezionati(){
 			return true;

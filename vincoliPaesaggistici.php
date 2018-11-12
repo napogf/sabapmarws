@@ -6,9 +6,9 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
 */
 include "login/autentication.php";
-require_once("dbfunctions.php");
-require_once("Etable_c.inc");
-require_once("fdataentry.php");
+//require_once("dbfunctions.php");
+//require_once("Etable_c.inc");
+//require_once("fdataentry.php");
 
 
 
@@ -43,7 +43,6 @@ if (!empty($_GET['buttapp'])) {
 }
 
 
-require_once('vincoliEtable.inc');
 include('pageheader.inc');
 		$praticaResult=dbselect('select pr.numeroregistrazione, ' .
 					'date_format(pr.dataregistrazione,\'%d-%m-%Y\') as "dataregistrazione", ' .
@@ -51,7 +50,7 @@ include('pageheader.inc');
 					'az.description as zonaDesc from ' .
 					'pratiche pr ' .
 					'left join arc_zone az on (az.zona = pr.zona) ' .
-					'where pratica_id = ' . $PRATICA_ID);
+					'where pratica_id = ' . $_GET['PRATICA_ID']);
 
 		$formTitle='<span id="oggettoEspi" style="cursor: pointer" >Nr Reg.: ' . $praticaResult['ROWS'][0]['numeroregistrazione'] .
 					' - Data Reg.: ' . $praticaResult['ROWS'][0]['dataregistrazione'] . ' - Zona: '.

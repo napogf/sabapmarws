@@ -114,9 +114,17 @@ class myhtmlETable extends htmlETable {
 			foreach ($this->_tableData as $key=>$value){
 				switch ($key) {
 					case 'TIPOLOGIA':
-						$row .= 	$this->GetColValue($key,$i) == 'U' ?
-								'<td style="background-color:#00aa00; color: white; text-align: center">U</td>' :
-								'<td style="background-color:#00ccff; color: white; text-align: center">E</td>' ;
+                        switch ($this->GetColValue($key,$i)) {
+                            case 'U':
+                            	$row .= '<td style="background-color:#00aa00; color: white; text-align: center">U</td>';
+                                break;
+                            case 'E':
+								$row .= '<td style="background-color:#00ccff; color: white; text-align: center">E</td>';
+                                break;
+                            case 'I':
+								$row .= '<td style="background-color:#4A5A71; color: white; text-align: center">I</td>';
+                                break;
+                        }
 
 						break;
 					case 'PRATICA_ID':

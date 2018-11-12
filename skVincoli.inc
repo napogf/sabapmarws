@@ -6,8 +6,9 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
 */
 require_once("dbfunctions.php");
-require_once("Etable_c.inc");
-require_once("fdataentry.php");
+//require_once("Etable_c.inc");
+//require_once("fdataentry.php");
+
 require_once('vincoliEtable.inc');
 
 $vinPane=$_GET['tPane']=='vincoli'?' selected="true" ':'';

@@ -6,11 +6,11 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
 */
 include "login/autentication.php";
-require_once("inc/dbfunctions.php");
-require_once("Etable_c.inc");
-require_once("fdataentry.php");
+//require_once("inc/dbfunctions.php");
+//require_once("Etable_c.inc");
+//require_once("fdataentry.php");
 //require_once 'MDB2.php';
-require_once('vincoliEtable.inc');
+//require_once('vincoliEtable.inc');
 
 if (!empty($buttapp)) {
 	if (!is_null($_GET['VINCOLO_ID']) and !is_null($_GET['PRATICA_ID'])) {
