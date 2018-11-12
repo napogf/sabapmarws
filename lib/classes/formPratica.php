@@ -291,127 +291,128 @@ class formPratica extends formExtended
 
     protected function praticheFascicolo()
     {
-        $db = Db_Pdo::getInstance();
-        $fascicoli = array();
-        print('<div dojoType="dijit.layout.ContentPane" title="Fascicolo" id="fascicoloPane" selected="' . $this->isPaneSelected('fascicolo') . '" >');
-        /* Verifico che una delle pratiche del fascicolo non sia già associata ad un progetto
-         * altrimenti propongo l'associazione ad un progetto oppure la creazione di un progetto
-         */
+        if($this->_praticaObj->TIPOLOGIA !== 'I'){
 
-        print('<table class="progetto">');
-        if ($project = $this->_praticaObj->getInfo('progetto')) {
-            print('<tr>
+            $db = Db_Pdo::getInstance();
+            $fascicoli = array();
+            print('<div dojoType="dijit.layout.ContentPane" title="Fascicolo" id="fascicoloPane" selected="' . $this->isPaneSelected('fascicolo') . '" >');
+            /* Verifico che una delle pratiche del fascicolo non sia già associata ad un progetto
+             * altrimenti propongo l'associazione ad un progetto oppure la creazione di un progetto
+             */
+
+            print('<table class="progetto">');
+            if ($project = $this->_praticaObj->getInfo('progetto')) {
+                print('<tr>
                 <td><button dojoType="dijit.form.Button" id="eliminaProgetto" value="' . $this->_FormFields['PRATICA_ID']->GetValue() . '"><i class="fa fa-trash"> </i>&nbsp;Rimuovi il protocollo dal Fascicolo</button></td>
 			    <td>' . $project['DESCRIPTION'] . '</td>
 		        </tr>');
 
-        } else {
-            print('<tr><td>
+            } else {
+                print('<tr><td>
                     <button dojoType="dijit.form.Button" id="associaFascicolo" value="' . $this->_FormFields['PRATICA_ID']->GetValue() . '" >
                                         <i class="fa fa-link"> </i>&nbsp;Associa ad un Protocollo</button>
                 </td><td>');
-            print('<div dojoType="dojox.data.QueryReadStore" ' .
-                'url="xml/jsonRicercaProtocollo.php" ' .
-                'jsId="fascRicerca" ' .
-                '></div>');
-            print('<div dojoType="dijit.form.FilteringSelect"  ' .
-                'store="fascRicerca" searchAttr="DESCRIPTION" ' .
+                print('<div dojoType="dojox.data.QueryReadStore" ' .
+                    'url="xml/jsonRicercaProtocollo.php" ' .
+                    'jsId="fascRicerca" ' .
+                    '></div>');
+                print('<div dojoType="dijit.form.FilteringSelect"  ' .
+                    'store="fascRicerca" searchAttr="DESCRIPTION" ' .
 //                ' pageSize="50" ' .
-                ' autoComplete="false" ' .
-                ' required="false" ' .
-                'name="ricercaFascicolo" ' .
-                'id="ricercaFascicolo" ' .
-                ' value="" ' .
-                ' queryExpr= "*${0}*", ' .
-                ' style="width:500px;" ' .
-                ' searchDelay="1000" ' .
-                '></div>');
+                    ' autoComplete="false" ' .
+                    ' required="false" ' .
+                    'name="ricercaFascicolo" ' .
+                    'id="ricercaFascicolo" ' .
+                    ' value="" ' .
+                    ' queryExpr= "*${0}*", ' .
+                    ' style="width:500px;" ' .
+                    ' searchDelay="1000" ' .
+                    '></div>');
 
 
-            print('</td></tr>');
+                print('</td></tr>');
 
 
-            print('<tr><td>
+                print('<tr><td>
                     <button dojoType="dijit.form.Button" id="associaProgetto" value="' . $this->_FormFields['PRATICA_ID']->GetValue() . '" ><i class="fa fa-link"> </i>&nbsp;Associa ad un Fascicolo esistente</button>
                 </td><td>');
 
-            print('<div dojoType="dojo.data.ItemFileReadStore" ' .
-                'url="xml/jsonSql.php?sql=select PROJECT_ID as ITEM, DESCRIPTION as DESCRIPTION from arc_pratiche_prj " ' .
-                'jsId="prjRicerca" ' .
-                '></div>');
+                print('<div dojoType="dojo.data.ItemFileReadStore" ' .
+                    'url="xml/jsonSql.php?sql=select PROJECT_ID as ITEM, DESCRIPTION as DESCRIPTION from arc_pratiche_prj " ' .
+                    'jsId="prjRicerca" ' .
+                    '></div>');
 
 
-            print('<div dojoType="dijit.form.FilteringSelect"  ' .
-                'store="prjRicerca" searchAttr="DESCRIPTION" ' .
+                print('<div dojoType="dijit.form.FilteringSelect"  ' .
+                    'store="prjRicerca" searchAttr="DESCRIPTION" ' .
 //                ' pageSize="50" ' .
-                ' autoComplete="false" ' .
-                ' required="false" ' .
-                'name="ricercaProgetto" ' .
-                'id="ricercaProgetto" ' .
-                ' value="" ' .
-                ' queryExpr= "*${0}*", ' .
-                ' style="width:500px;" ' .
-                // ' searchDelay="1000" ' .
-                '></div>');
+                    ' autoComplete="false" ' .
+                    ' required="false" ' .
+                    'name="ricercaProgetto" ' .
+                    'id="ricercaProgetto" ' .
+                    ' value="" ' .
+                    ' queryExpr= "*${0}*", ' .
+                    ' style="width:500px;" ' .
+                    // ' searchDelay="1000" ' .
+                    '></div>');
 
 
-            print('</td></tr>');
-            print('<tr>
+                print('</td></tr>');
+                print('<tr>
                 <td><button dojoType="dijit.form.Button" id="creaProgetto" value="' . $this->_FormFields['PRATICA_ID']->GetValue() . '"><i class="fa fa-plus-circle"> </i>&nbsp;Crea un Fascicolo</button></td>
 			    <td><input type="text" id="nuovoProgetto" name="nuovoProgetto" required="false" style="width:500px;" dojoType="dijit.form.ValidationTextBox"/></td>
 		        </tr>');
-        }
-        print('</table>');
-
-        print('<div><ul class="fascicoloPratiche selected">Protocollo');
-
-
-        if ($this->_praticaObj->fascicolo) {
-            foreach ($this->_praticaObj->fascicolo as $pratica) {
-                print('<li>' . ($pratica['tipologia'] == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
-//                 print('<ul>');
-                switch ($pratica['funzione']) {
-                    case 'inizio_sospensione':
-                        $iconaSospensione = '<i class="fa fa-pause"> </i>';
-                        break;
-                    case 'fine_sospensione':
-                        $iconaSospensione = '<i class="fa fa-play"> </i>';
-                        break;
-                    default:
-                        $iconaSospensione = '';
-                        break;
-                }
-
-                if ($praticaDesc = $db->query('SELECT pratica_id, numeroregistrazione, dataregistrazione, oggetto FROM pratiche WHERE pratica_id = :pratica_id', array(
-                    ':pratica_id' => $pratica['pratica_id'],
-                ))->fetch()
-                ) {
-                    print('<ul><li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $praticaDesc['pratica_id'] . '" > </i>' .
-                        $praticaDesc['numeroregistrazione'] . ' - ' .
-                        (new Date($praticaDesc['dataregistrazione']))->toReadable() .
-                        ' : ' . $praticaDesc['oggetto'] . $iconaSospensione .
-                        '</li></ul>');
-                }
             }
+            print('</table>');
+
+            print('<div><ul class="fascicoloPratiche selected">Protocollo');
+
+            if ($this->_praticaObj->fascicolo) {
+                foreach ($this->_praticaObj->fascicolo as $pratica) {
+                    print('<li>' . ($pratica['tipologia'] == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
+//                 print('<ul>');
+                    switch ($pratica['funzione']) {
+                        case 'inizio_sospensione':
+                            $iconaSospensione = '<i class="fa fa-pause"> </i>';
+                            break;
+                        case 'fine_sospensione':
+                            $iconaSospensione = '<i class="fa fa-play"> </i>';
+                            break;
+                        default:
+                            $iconaSospensione = '';
+                            break;
+                    }
+
+                    if ($praticaDesc = $db->query('SELECT pratica_id, numeroregistrazione, dataregistrazione, oggetto FROM pratiche WHERE pratica_id = :pratica_id', array(
+                        ':pratica_id' => $pratica['pratica_id'],
+                    ))->fetch()
+                    ) {
+                        print('<ul><li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $praticaDesc['pratica_id'] . '" > </i>' .
+                            $praticaDesc['numeroregistrazione'] . ' - ' .
+                            (new Date($praticaDesc['dataregistrazione']))->toReadable() .
+                            ' : ' . $praticaDesc['oggetto'] . $iconaSospensione .
+                            '</li></ul>');
+                    }
+                }
 //                 print('</ul>');
-            print('</li>');
-        } else {
-            print('<li>' . ($this->_praticaObj->TIPOLOGIA == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
-            print('<ul>');
-            print('<li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $this->_praticaObj->PRATICA_ID . '" > </i>' .
-                $this->_praticaObj->getInfo('NUMEROREGISTRAZIONE') . ' - ' .
-                (new Date($this->_praticaObj->getInfo('DATAREGISTRAZIONE')))->toReadable() .
-                ' : ' . $this->_praticaObj->getInfo('OGGETTO') .
-                '</li>');
-            print('</ul>');
-            print('</li>');
+                print('</li>');
+            } else {
+                print('<li>' . ($this->_praticaObj->TIPOLOGIA == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
+                print('<ul>');
+                print('<li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $this->_praticaObj->PRATICA_ID . '" > </i>' .
+                    $this->_praticaObj->getInfo('NUMEROREGISTRAZIONE') . ' - ' .
+                    (new Date($this->_praticaObj->getInfo('DATAREGISTRAZIONE')))->toReadable() .
+                    ' : ' . $this->_praticaObj->getInfo('OGGETTO') .
+                    '</li>');
+                print('</ul>');
+                print('</li>');
 
-        }
-        print('</ul></div>');
+            }
+            print('</ul></div>');
 
 
-        if ($project = $this->_praticaObj->progetto) {
-            $fascicoliProgetto = $db->query('
+            if ($project = $this->_praticaObj->progetto) {
+                $fascicoliProgetto = $db->query('
                     SELECT DISTINCT pratiche_fascicoli.fascicolo_id FROM pratiche
                     RIGHT JOIN arc_pratiche_prj ON (arc_pratiche_prj.PRATICA_ID = pratiche.PRATICA_ID)
                     LEFT JOIN pratiche_fascicoli ON (
@@ -431,57 +432,58 @@ class formPratica extends formExtended
                     AND pratiche_fascicoli.fascicolo_id NOT IN  
                         (SELECT fascicolo_id FROM pratiche_fascicoli WHERE pratiche_fascicoli.pratica_id = :pratica_id)
                     ', [
-                ':project_id' => $project['PROJECT_ID'],
-                ':pratica_id' => $this->_praticaObj->PRATICA_ID,
-            ])->fetchAll();
+                    ':project_id' => $project['PROJECT_ID'],
+                    ':pratica_id' => $this->_praticaObj->PRATICA_ID,
+                ])->fetchAll();
 
-            foreach ($fascicoliProgetto as $fascicolo) {
-                $praticheFascicolo = $db->query('SELECT pratica_id FROM pratiche
+                foreach ($fascicoliProgetto as $fascicolo) {
+                    $praticheFascicolo = $db->query('SELECT pratica_id FROM pratiche
             	        WHERE pratica_id IN (SELECT pratica_id FROM pratiche_fascicoli WHERE fascicolo_id = :fascicolo_id)
             	        ORDER BY pratiche.pratica_id', [
-                    ':fascicolo_id' => $fascicolo['fascicolo_id']
-                ])->fetch();
+                        ':fascicolo_id' => $fascicolo['fascicolo_id']
+                    ])->fetch();
 
-                $praticaFascicolo = new Pratica();
-                $praticaFascicolo->setId($praticheFascicolo['pratica_id']);
-                print('<div><ul class="fascicoloPratiche selected">Protocollo');
+                    $praticaFascicolo = new Pratica();
+                    $praticaFascicolo->setId($praticheFascicolo['pratica_id']);
+                    print('<div><ul class="fascicoloPratiche selected">Protocollo');
 
-                if ($praticaFascicolo->fascicolo) {
-                    foreach ($praticaFascicolo->fascicolo as $pratica) {
-                        print('<li>' . ($pratica['tipologia'] == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
-                        //                 print('<ul>');
-                        switch ($pratica['funzione']) {
-                            case 'inizio_sospensione':
-                                $iconaSospensione = '<i class="fa fa-pause"> </i>';
-                                break;
-                            case 'fine_sospensione':
-                                $iconaSospensione = '<i class="fa fa-play"> </i>';
-                                break;
-                            default:
-                                $iconaSospensione = '';
-                                break;
+                    if ($praticaFascicolo->fascicolo) {
+                        foreach ($praticaFascicolo->fascicolo as $pratica) {
+                            print('<li>' . ($pratica['tipologia'] == 'E' ? '<i class="fa fa-arrow-circle-right"> </i>&nbsp;Entrata' : 'Uscita&nbsp;<i class="fa fa-arrow-circle-left"> </i>'));
+                            //                 print('<ul>');
+                            switch ($pratica['funzione']) {
+                                case 'inizio_sospensione':
+                                    $iconaSospensione = '<i class="fa fa-pause"> </i>';
+                                    break;
+                                case 'fine_sospensione':
+                                    $iconaSospensione = '<i class="fa fa-play"> </i>';
+                                    break;
+                                default:
+                                    $iconaSospensione = '';
+                                    break;
+                            }
+
+                            if ($praticaDesc = $db->query('SELECT pratica_id, numeroregistrazione, dataregistrazione, oggetto FROM pratiche WHERE pratica_id = :pratica_id', array(
+                                ':pratica_id' => $pratica['pratica_id'],
+                            ))->fetch()
+                            ) {
+                                print('<ul><li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $praticaDesc['pratica_id'] . '" > </i>' .
+                                    $praticaDesc['numeroregistrazione'] . ' - ' .
+                                    (new Date($praticaDesc['dataregistrazione']))->toReadable() .
+                                    ' : ' . $praticaDesc['oggetto'] . $iconaSospensione .
+                                    '</li></ul>');
+                            }
                         }
-
-                        if ($praticaDesc = $db->query('SELECT pratica_id, numeroregistrazione, dataregistrazione, oggetto FROM pratiche WHERE pratica_id = :pratica_id', array(
-                            ':pratica_id' => $pratica['pratica_id'],
-                        ))->fetch()
-                        ) {
-                            print('<ul><li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $praticaDesc['pratica_id'] . '" > </i>' .
-                                $praticaDesc['numeroregistrazione'] . ' - ' .
-                                (new Date($praticaDesc['dataregistrazione']))->toReadable() .
-                                ' : ' . $praticaDesc['oggetto'] . $iconaSospensione .
-                                '</li></ul>');
-                        }
+                        //                 print('</ul>');
+                        print('</li>');
                     }
-                    //                 print('</ul>');
-                    print('</li>');
+                    print('</ul></div>');
                 }
-                print('</ul></div>');
             }
+
+
+            print('</div>');
         }
-
-
-        print('</div>');
 
         return $this;
     }
@@ -1264,7 +1266,6 @@ class formPratica extends formExtended
         if ($this->GetFormFieldValue('USCITA') > ' ') {
             print('Pratica chiusa');
         } else {
-
             if ($this->_FormFields['TIPOLOGIA']->GetValue() == 'E') {
                 if (!$sospensione = Db_Pdo::getInstance()->query('SELECT * FROM arc_sospensioni WHERE pratica_id = :pratica_id OR protouscita = :pratica_id OR protoentrata = :pratica_id', [
                     ':pratica_id' => $_GET['PRATICA_ID']
@@ -1278,11 +1279,19 @@ class formPratica extends formExtended
                     print ('<a href="praticaRiattivazione.php?PRATICA_ID=' . $this->_FormFields['PRATICA_ID']->GetValue() . '"><i class="fa fa-play"> </i>Riprendi Procedimento</a>');
 
                 }
+
             }
         }
 
+        print ('<a href="vincoliPaesaggistici.php?PRATICA_ID=' . $this->_FormFields['PRATICA_ID']->GetValue() . '">Vincoli Paesaggistici</a><img src="graphics/photo_1.png" style="margin-left:10px; margin-right:10px;"  title="Visualizza Vincoli Paesaggistici" >');
 
-        print ('<a href="praticaVincoli.php?PRATICA_ID=' . $this->_FormFields['PRATICA_ID']->GetValue() . '"><i class="fa fa-link"> </i>Vincoli</a>');
+        print ('<a href="vincoliMonumentali.php?PRATICA_ID=' . $this->_FormFields['PRATICA_ID']->GetValue() . '' .
+            //				'&keyword=' .$ManagedTable->GetFormFieldValue('OGGETTO').
+            '&foglioFilter=' .$this->GetFormFieldValue('FOGLIO').
+            '&mappaleFilter=' .$this->GetFormFieldValue('MAPPALE').
+            '&anaFilter=' .$this->GetFormFieldValue('MAPPALE').
+            '">Vincoli Monumentali</a><img src="graphics/home.png" style="margin-left:10px; margin-right:10px;"  title="Visualizza Vincoli Monumentali" >');
+
 
 
         print ('</div>' . "\n");

@@ -1,1 +1,2 @@
 docker-entrypoint-initdb.d/*.saved
+/docker-entrypoint-initdb.d/sabapmarws.sql.gz
