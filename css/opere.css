@@ -9,7 +9,7 @@
 	background-repeat: no-repeat;
 	background-color: #ffffff;
 	vertical-align: bottom;
-	height: 170px;
+	height: 150px;
 }
 
 
@@ -28,6 +28,7 @@
 
 #topLogo{
 	float: left;
+	margin: 10px 0px;
 }
 
 #topTitle{

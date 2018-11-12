@@ -308,29 +308,7 @@ $wkPage=isSet($_GET['wk_page'])?$_GET['wk_page']:1;
 $serviceQuery='select SQL_CALC_FOUND_ROWS distinct pr.PRATICA_ID,
                         group_concat(arc_sospensioni.sospensione_id) as sospensioni,
 						pr.TIPOLOGIA, ' .
-						'(case ' .
-						'	when av.vincolo_id is null and (pr.uscita is null or (pr.uscita = STR_TO_DATE(\'00-00-0000\', \'%m-%d-%Y\')))  then ' .
-						'	concat(\'<span id="vinc\',pr.PRATICA_ID,\'"><img src="graphics/error.png" style="cursor: pointer" onclick="viewVincoli(\',pr.PRATICA_ID,\')" ></span>' .
-									'<span dojoType="dijit.Tooltip" id="ttVinc\',pr.PRATICA_ID,\'" connectId="vinc\',pr.PRATICA_ID,\'" style="display:none;"><div style="max-width:250px; display:block;">Attenzione.<br>Verificare situazione vincolistica</div></span>\') ' .
-						'	when av.vincolo_id is not null then ' .
-						'	concat(\'<span id="vinc\',pr.PRATICA_ID,\'"><img src="graphics/link.png" style="cursor: pointer" onclick="viewVincoli(\',pr.PRATICA_ID,\')"></span>' .
-									'<span dojoType="dijit.Tooltip" id="ttVinc\',pr.PRATICA_ID,\'" connectId="vinc\',pr.PRATICA_ID,\'" style="display:none;">' .
-									'<div class="djToolTipContainer" >' .
-									'<fieldset ><legend style="border: none; background-color: white; ">Vincolo</legend>' .
-									'<LABEL>Oggetto</LABEL>\',av.denominazione,\'<BR/>' .
-									'<LABEL>Indirizzo</LABEL>\',av.ubicazioneinit,\' \',av.ubicazioneprinc,\'<BR/>' .
-									'<LABEL>Localit&agrave;</LABEL>\',av.localita,\'<BR/>' .
-									'<LABEL>Comune/Prov.</LABEL>\',av.comune,\' \',av.provincia,\'<BR/>' .
-									'<LABEL>Foglio</LABEL>\',av.fogliocatastale,\'<BR/>' .
-									'<LABEL>Particelle</LABEL>\',av.particelle,\'<BR/>' .
-									'<LABEL>Provv.Min.</LABEL>\',av.provvedimentoministeriale,\'<BR/>' .
-									'<LABEL>Trascr.Cons.</LABEL>\',av.trascrizioneinconservatoria,\'<BR/>' .
-									'<LABEL>Pos. monumentale</LABEL>\',av.posizionemonumentale,\'<BR/>' .
-									'<LABEL>Pos. vincoli</LABEL>\',av.posizionevincoli,\'<BR/>' .
-									'</fieldset>' .
-									'</div></span>\'' .
-									') ' .
-						'end ) as "Vincoli", ' .
+						'pr.pratica_id as "Vincoli", ' .
 						'pr.USCITA, ' .
 						'pr.MAIL_SENT_ID, ' .
 						' "pec" as pec, ' .

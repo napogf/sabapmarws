@@ -2,7 +2,7 @@
 $host = "mysql";
 $user = "scapold";                   //username per la connessione al DB oracle
 $pwd = "scapold";                    //password per la connessione al DB oracle
-$fontedati ="scapold";               //database da usare
+$fontedati ="sabapmarws";               //database da usare
 
 /*************** Parametri per la creazione della tabella *************/
 $tablename = "sys_users";        //nome della tabella dove saranno memorizzati gli utenti
@@ -145,7 +145,7 @@ function custom_error_handler($errno, $errstr, $errfile, $errline){
 // Imposto la connessione a Database
 $dbParams = array(
 	'host'					=> 'mysql',
-	'database'				=> 'scapold',
+	'database'				=> 'sabapmarws',
 	'username'				=> 'scapold',
 	'password'				=> 'scapold',
 	'connection_charset'	=> 'UTF8',

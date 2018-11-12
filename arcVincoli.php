@@ -6,12 +6,12 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 include "login/autentication.php";
-//require_once("dbfunctions.php");
-//require_once("fdataentry.php");
-//require_once("formExt.inc");
-//require_once("table_c.inc");
-//require_once("toolBar.inc");
-//require_once("Etable_c.inc");
+require_once("dbfunctions.php");
+require_once("fdataentry.php");
+require_once("formExt.inc");
+require_once("table_c.inc");
+require_once("toolBar.inc");
+require_once("Etable_c.inc");
 $dbTable='ARC_VINCOLI';
 
 class MyDbForm extends formExtended {

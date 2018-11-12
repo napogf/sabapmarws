@@ -28,12 +28,17 @@ function normalizzaProtuscita($pratica,$log){
      * immagino che in protuscita ci sia il protocollo
      */
 
-    $protuscitaId = $db->query('SELECT PRATICA_ID FROM pratiche WHERE NUMEROREGISTRAZIONE = :protouscita 
+    if(!$protuscitaId = $db->query('SELECT PRATICA_ID FROM pratiche WHERE PRATICA_ID = :protouscita',
+            [':protouscita' => $pratica['PROTUSCITA']])->fetchColumn()){
+
+        $protuscitaId = $db->query('SELECT PRATICA_ID FROM pratiche WHERE NUMEROREGISTRAZIONE = :protouscita 
                                         AND DATAREGISTRAZIONE between :dataentrata AND :datauscita',[
-        ':protouscita' => $pratica['PROTUSCITA'],
-        ':dataentrata' => $pratica['DATAREGISTRAZIONE'],
-        ':datauscita'  => (new Date($pratica['USCITA']))->format('Y-m-t'),
-    ])->fetchColumn();
+            ':protouscita' => $pratica['PROTUSCITA'],
+            ':dataentrata' => $pratica['DATAREGISTRAZIONE'],
+            ':datauscita'  => (new Date($pratica['USCITA']))->format('Y-m-t'),
+        ])->fetchColumn();
+    }
+
 
     return $protuscitaId;
 }

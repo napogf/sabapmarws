@@ -1,6 +1,6 @@
 <?php
 include "login/autentication.php";
-//require_once("dbfunctions.php");
+require_once("dbfunctions.php");
 
 $vincoliQuery='select av.* from arc_vincoli av ' .
 				'right join pratiche pr on (pr.vincolo_id = av.vincolo_id) ' .

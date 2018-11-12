@@ -1,0 +1,46 @@
+- parto da docker pulito e poi importo manualmente il db di sbapmar attuale in sabapmarws + sbapveorws da sbapveorwsc
+--- inizio conversione
+use sabapmarws
+\. sys_config_test_ws.sql.saved
+\. syssbapmar.sql.saved
+\. sbapmar.sql.saved
+
+
+
+
+ use sbapveorws
+ \. sbapveorws.sql.saved
+
+
+---- Eseguo doc/WS/migrations.sql
+  errori senza problemi:
+  DROP VIEW languages
+  [2018-11-11 15:07:36] [42S02][1051] Unknown table 'sabapmarws.languages'
+  ALTER TABLE `pratiche` ADD `FALDONE` VARCHAR(60) NULL AFTER `PROJECT_ID`
+  [2018-11-11 15:08:25] [42S21][1060] Duplicate column name 'FALDONE'
+  ALTER TABLE pratiche ADD INDEX FALDONE (FALDONE)
+  [2018-11-11 15:08:43] [42000][1061] Duplicate key name 'FALDONE'
+  DROP VIEW arc_mittenti
+  [2018-11-11 15:08:49] [42S02][1051] Unknown table 'sabapmarws.arc_mittenti'
+  ALTER TABLE `arc_destinazioni` CHANGE `NOME_COGNOME` `COGNOME` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  [2018-11-11 15:08:54] [42S21][1060] Duplicate column name 'COGNOME'
+  ALTER TABLE `arc_destinazioni` ADD `NOME` VARCHAR( 120 ) NULL AFTER `PRATICA_ID`
+  [2018-11-11 15:08:54] [42S21][1060] Duplicate column name 'NOME'
+  ALTER TABLE `arc_destinazioni` ADD `TITOLO` VARCHAR( 120 ) NULL AFTER `COGNOME`
+  [2018-11-11 15:08:54] [42S21][1060] Duplicate column name 'TITOLO'
+  ALTER TABLE `arc_destinazioni` CHANGE `VIA` `TOPONIMO` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  [2018-11-11 15:08:54] [42S21][1060] Duplicate column name 'TOPONIMO'
+  ALTER TABLE `arc_destinazioni` ADD `LOCALITA` VARCHAR( 120 ) NULL ,
+  ADD `TELEFONO` VARCHAR( 50 ) NULL ,
+  ADD `FAX` VARCHAR( 50 ) NULL ,
+  ADD `CODICEFISCALE` VARCHAR( 20 ) NULL ,
+  ADD `EMAIL` VARCHAR( 255 ) NULL,
+  ADD `PEC` VARCHAR( 25...
+  [2018-11-11 15:08:54] [42S21][1060] Duplicate column name 'TELEFONO'
+
+---- Scritp
+
+#php normalizza_protuscita.php
+
+#php update_sospensioni.php
+#php update_fascicoli.php
