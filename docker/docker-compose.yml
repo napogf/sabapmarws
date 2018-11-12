@@ -68,6 +68,7 @@ services:
           - TZ=${WORKSPACE_TIMEZONE}
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        - ${PEC_PATH_HOST}:${PEC_PATH_CONTAINER}
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
@@ -117,6 +118,7 @@ services:
       volumes:
         - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        - ${PEC_PATH_HOST}:${PEC_PATH_CONTAINER}
       expose:
         - "9000"
       extra_hosts:
@@ -141,6 +143,7 @@ services:
           - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        - ${PEC_PATH_HOST}:${PEC_PATH_CONTAINER}
         - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
         - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       ports:
@@ -183,6 +186,7 @@ services:
       privileged: true
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        - ${PEC_PATH_HOST}:${PEC_PATH_CONTAINER}
       expose:
         - 2375
       networks:

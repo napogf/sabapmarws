@@ -63,7 +63,7 @@ foreach ($phpParams as $key => $val) {
 }
 
 
-ifdefined('PEC_PATH',			dirname(ROOT_PATH) . '/pecmail');
+ifdefined('PEC_PATH',			ROOT_PATH . '/pecmail');
 ifdefined('LIB_PATH',                   ROOT_PATH . '/lib');
 // ifdefined('PUBLIC_PATH',                dirname(ROOT_PATH) . '/public_html' . BASEURL);
 ifdefined('TMP_PATH',                   ROOT_PATH . '/tmp');
