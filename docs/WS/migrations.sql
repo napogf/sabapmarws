@@ -294,6 +294,11 @@ create view user_resp_reference as SELECT * FROM `sys_user_resp_reference` WHERE
 --
 ALTER TABLE arc_pratiche_pec ADD suapente varchar(255) NULL;
 ALTER TABLE arc_pratiche_pec ADD TYPE enum('pec', 'mail') DEFAULT 'pec' NOT NULL;
+ALTER TABLE arc_pratiche_pec ADD ARCHIVIATA enum('Y', 'N', 'E', 'A') DEFAULT 'N' NULL;
+ALTER TABLE arc_pratiche_pec MODIFY NUMEROREGISTRAZIONE varchar(25) DEFAULT NULL ;
+ALTER TABLE arc_pratiche_pec MODIFY DATAREGISTRAZIONE date DEFAULT NULL ;
+ALTER TABLE `arc_pratiche_pec` CHANGE `SUBJECT` `SUBJECT` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
 
 ALTER TABLE `arc_pratiche_pec`
   ADD PRIMARY KEY (`PEC_ID`),

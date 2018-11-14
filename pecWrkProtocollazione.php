@@ -14,7 +14,10 @@ class myhtmlETable extends htmlETable {
 				} else {
 					if($column=='Mittente'){
 						return htmlspecialchars(stripslashes($this->_tableData[$column]->GetValue($i)));
-					}
+					} elseif($column=='Oggetto') {
+					    $subject = stripslashes($this->_tableData[$column]->GetValue($i));
+                        return str_replace('_', ' ', $subject);
+                    }
 			    	return stripslashes($this->_tableData[$column]->GetValue($i));
 				}
 
