@@ -148,7 +148,7 @@ class displayMail extends MimeMailParser {
 			if(!empty($fileName)){
 			    $fileName = str_replace("_"," ", mb_decode_mimeheader($fileName));
 			    print('<li  onclick="pecDownload(this,'.$_GET['PEC_ID'].','.$attachIndex.')" style="cursor: pointer">
-					<span class="fa '. $filesClass[strtolower($attachment->extension)] .'"> ' . $attachment->extension . '</span>' .  $fileName . '</li>');
+					<i class="fa '. $filesClass[strtolower($attachment->extension)] .'"> </i>  ' .  $fileName . '</li>');
 			}
 			$attachIndex++;
 		}
