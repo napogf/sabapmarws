@@ -298,6 +298,7 @@ ALTER TABLE arc_pratiche_pec ADD ARCHIVIATA enum('Y', 'N', 'E', 'A') DEFAULT 'N'
 ALTER TABLE arc_pratiche_pec MODIFY NUMEROREGISTRAZIONE varchar(25) DEFAULT NULL ;
 ALTER TABLE arc_pratiche_pec MODIFY DATAREGISTRAZIONE date DEFAULT NULL ;
 ALTER TABLE `arc_pratiche_pec` CHANGE `SUBJECT` `SUBJECT` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE arc_pratiche_pec MODIFY STATUS enum('U', 'R', 'A', 'P') NOT NULL DEFAULT 'U';
 
 
 ALTER TABLE `arc_pratiche_pec`
