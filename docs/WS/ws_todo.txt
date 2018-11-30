@@ -52,6 +52,8 @@ in Setup -> Manage Forms aggiungere RESPONSABILE_ID, FASCICOLO // FASCICOLO non 
 in Setup -> Manage Forms aggiungere il campo classificazione
 
 
+// Setup -> Generatore form
+Rigenerare form arc_pratiche_pec
 
 
 --- da fare concordare con Clara
@@ -76,6 +78,7 @@ truncate arc_documenti
 
 // arc_pratiche_pec
 Rigenerare Form
+E in TYPE mettere non aggiornabile
 
 
 // Allineare il CODICE UO con quello di ESPI
