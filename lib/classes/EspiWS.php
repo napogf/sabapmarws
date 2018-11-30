@@ -464,7 +464,7 @@ class EspiWS
             }
             $uoEspi = true;
             $assegnazione_uo = $db->query('SELECT uoid FROM arc_organizzazione WHERE CODE = :assegnazione LIMIT 1',[
-                ':assegnazione' => $post['assegnazione'],
+                ':assegnazione' => $post['CodUfficioCompetente'],
             ])->fetchColumn();
             if (isSet($post['uoid'])) {
                 foreach ($post['uoid'] as $uoid) {
