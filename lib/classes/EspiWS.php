@@ -428,7 +428,7 @@ class EspiWS
                     ':uscita' => ($tipologia == 'U' ? Date('Y-m-d') : null),
                     ':numeroregistrazione' => $this->_wsResult->NumProtocollo,
                     ':titolo' => $post['clsTMittenteDestinatario']['DesTipoAnagrafica'],
-                    ':modello' => ($modello ?? null),
+                    ':modello' => ((integer) $modello > 0 ? $modello : null),
                     ':cognome' => $post['clsTMittenteDestinatario']['Cognome'],
                     ':nome' => $post['clsTMittenteDestinatario']['Nome'],
                     ':codicefiscale' => $post['clsTMittenteDestinatario']['CF'],
