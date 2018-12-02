@@ -329,6 +329,7 @@ ALTER TABLE `arc_pratiche_pec`
   ADD CONSTRAINT `arc_pratiche_pec_ibfk_1` FOREIGN KEY (`PRATICA_ID`) REFERENCES `pratiche` (`PRATICA_ID`);
 
 ALTER TABLE `arc_organizzazione` ADD `VALID` ENUM('Y','N') NOT NULL DEFAULT 'Y' AFTER `EMAIL`;
+alter table arc_organizzazione modify CODE varchar(60) null;
 
 -- Organizzazioni da mettere a posto
 -- Eseguire create_routines.sql e create_trigger.sql

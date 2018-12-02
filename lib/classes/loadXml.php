@@ -104,7 +104,7 @@ class loadXml {
 				$this->_praticaArray['oggetto'] =  '\'' .$this->maskValue($pratica['Intestazione']['Oggetto']). '\'';
 				$this->_praticaArray['note'] =  '\'' .$this->maskValue($pratica['Intestazione']['Note']). '\'';
 
-				$this->_praticaArray['titolazione'] =  '\'' .$this->maskValue($pratica['Intestazione']['Classificazione']['Classifica']['Livello']['@nome']).' - '.$this->maskValue($pratica['Intestazione']['Classificazione']['Classifica']['Livello']['Descrizione']). '\'' ;
+				// $this->_praticaArray['titolazione'] =  '\'' .$this->maskValue($pratica['Intestazione']['Classificazione']['Classifica']['Livello']['@nome']).' - '.$this->maskValue($pratica['Intestazione']['Classificazione']['Classifica']['Livello']['Descrizione']). '\'' ;
 	}
 
 
@@ -193,6 +193,7 @@ class loadXml {
 	}
 
 	function updateStoria(){
+	    return true;
 		dbupdate('delete from pratiche_storia where pratica_id = '.$this->_praticaId);
 		foreach((array) $this->_praticaStoria as $value ){
 			for ($index = 0; $index < sizeof($value); $index++) {
