@@ -10,7 +10,7 @@ $logger->info('Inizio importazione');
 set_time_limit(0);
 ini_set('memory_limit', '1024M');
 $importFolder = isset($argv[1]) ? $argv[1] : 'INBOX';
-
+r(PEC_PATH);
 $db = Db_Pdo::getInstance();
 
 function revertDate($data)
