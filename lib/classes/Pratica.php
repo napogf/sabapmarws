@@ -59,6 +59,7 @@ class Pratica
 
             $this->pratica->fascicolo = (object) $fascicolo;
             foreach ($this->pratica->fascicolo as $pratica) {
+            	$praticheFascicolo[] = $pratica['pratica_id'];
 
             }
         } else {
