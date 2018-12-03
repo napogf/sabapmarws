@@ -500,6 +500,12 @@ class EspiWS
         $db = Db_Pdo::getInstance();
         try {
             $db->beginTransaction();
+            if (!$idUfficioCompetente = $db->query('select uoid from arc_organizzazione where code = :codUfficioCompetente',[
+                ':codUfficioCompetente' => $post['CodUfficioCompetente'],
+            ])->fetchColumn()) {
+                throw new Exception('Codice ufficio competente non esistente!');
+            }
+
             $db->query('INSERT INTO pratiche (numeroregistrazione, dataregistrazione, tipologia, 
                                               titolo, nome, cognome, codicefiscale, toponimo, localita, 
                                               cap, comune, provincia, telefono, fax, email, oggetto, 
@@ -537,7 +543,7 @@ class EspiWS
             $uoEspi = true;
             if (isSet($post['uoid'])) {
                 foreach ($post['uoid'] as $uoid) {
-                    $uoEspi = ($post['clsInputOperazione']['CodUfficioCompetente'] == $uoid) ? false : $uoEspi;
+                    $uoEspi = ($idUfficioCompetente == $uoid) ? false : $uoEspi;
                     $db->query('INSERT INTO arc_pratiche_uo (uoid, pratica_id) VALUES (:uoid, :pratica_id)', array(
                         ':uoid' => $uoid,
                         ':pratica_id' => $this->pratica_id
@@ -546,12 +552,15 @@ class EspiWS
             }
             if ($uoEspi) {
                 $db->query('INSERT INTO arc_pratiche_uo (uoid, pratica_id) VALUES (:uoid, :pratica_id)', array(
-                    ':uoid' => $post['clsInputOperazione']['CodUfficioCompetente'],
+                    ':uoid' => $idUfficioCompetente,
                     ':pratica_id' => $this->pratica_id
                 ));
             }
             $db->commit();
             $this->logConnection($pec_id);
+        } catch (Exception $e) {
+            $db->rollBack();
+            $this->_wsError = $e->getMessage();
         } catch (PDOException $e) {
             $db->rollBack();
             $this->logConnection($pec_id);
