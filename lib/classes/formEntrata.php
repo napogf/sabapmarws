@@ -33,6 +33,10 @@ class formEntrata extends formPratica
                             values (:' . implode(', :',array_keys($praticaInEntrata)) . ')',$params);
                 $uscitaId = $db->lastInsertId();
 
+                $db->query('update pratiche set PRATICA_USCITA_ID = :uscita_id where pratica_id = :entrata_id',[
+                    ':uscita_id' => $uscitaId,
+                    ':entrata_id' => $praticaInEntrataId,
+                ]);
 
 
                 $db->query('insert into arc_pratiche_uo (pratica_id, uoid) select :pratica_id, uoid FROM arc_pratiche_uo WHERE pratica_id = :pratica_in_entrata',array(
