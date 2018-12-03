@@ -384,7 +384,7 @@ class formPratica extends formExtended
                     }
 
                     if ($praticaDesc = $db->query('SELECT pratica_id, numeroregistrazione, dataregistrazione, oggetto FROM pratiche WHERE pratica_id = :pratica_id', array(
-                        ':pratica_id' => $pratica['pratica_id'],
+                        ':pratica_id' => $pratica['PRATICA_ID'],
                     ))->fetch()
                     ) {
                         print('<ul><li><i class="fa fa-edit fa-2x pratica-fascicolo"  data-pratica-id="' . $praticaDesc['pratica_id'] . '" > </i>' .
