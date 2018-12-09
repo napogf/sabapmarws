@@ -87,3 +87,6 @@ inserire responsabilità Protocollazione ed assegnarla agli utenti
 La form delle Responsabilità va gestita con dbTable, modificare MENU
 
 aggiornare djDeleteProject.php
+
+
+verificare arc_destinazioni se è andata su bene

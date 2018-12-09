@@ -10,7 +10,7 @@
 
 Db_Pdo::getInstance()->exec('SET @posizione = 0');
 $sql = 'SELECT @posizione:=@posizione+1 as ITEM,
-            substr(trim(concat(ifnull(nome,""), " ", cognome," ",ifnull(titolo,""))),1,80) as DESCRIPTION,
+            trim(concat(ifnull(nome,""), " ", cognome," ",ifnull(titolo,""))) as DESCRIPTION,
                 titolo, nome, cognome, toponimo, cap, comune, provincia, localita, telefono, fax, codicefiscale, email, pec
             FROM arc_mittenti';
 if($_GET['DESCRIPTION'] !== '**'){

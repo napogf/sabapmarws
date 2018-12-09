@@ -340,11 +340,11 @@ alter table arc_organizzazione modify CODE varchar(60) null;
 
 
 
-ALTER TABLE `arc_destinazioni` CHANGE `NOME_COGNOME` `COGNOME` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
-ALTER TABLE `arc_destinazioni` ADD `NOME` VARCHAR( 120 ) NULL AFTER `PRATICA_ID` ;
+ALTER TABLE `arc_destinazioni` CHANGE `NOME_COGNOME` `COGNOME` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
+ALTER TABLE `arc_destinazioni` ADD `NOME` VARCHAR( 255 ) NULL AFTER `PRATICA_ID` ;
 ALTER TABLE `arc_destinazioni` ADD `TITOLO` VARCHAR( 120 ) NULL AFTER `COGNOME` ;
-ALTER TABLE `arc_destinazioni` CHANGE `VIA` `TOPONIMO` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
-ALTER TABLE `arc_destinazioni` ADD `LOCALITA` VARCHAR( 120 ) NULL ,
+ALTER TABLE `arc_destinazioni` CHANGE `VIA` `TOPONIMO` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
+ALTER TABLE `arc_destinazioni` ADD `LOCALITA` VARCHAR( 255 ) NULL ,
   ADD `TELEFONO` VARCHAR( 50 ) NULL ,
   ADD `FAX` VARCHAR( 50 ) NULL ,
   ADD `CODICEFISCALE` VARCHAR( 20 ) NULL ,
@@ -357,9 +357,9 @@ DROP TABLE IF EXISTS `arc_mittenti`;
 CREATE TABLE `arc_mittenti` (
   `id` int(11) NOT NULL,
   `titolo` varchar(150) DEFAULT NULL,
-  `nome` varchar(150) DEFAULT NULL,
-  `cognome` varchar(150) DEFAULT NULL,
-  `toponimo` varchar(150) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `cognome` varchar(255) DEFAULT NULL,
+  `toponimo` varchar(255) DEFAULT NULL,
   `cap` varchar(15) DEFAULT NULL,
   `comune` varchar(150) DEFAULT NULL,
   `provincia` varchar(150) DEFAULT NULL,
@@ -367,7 +367,7 @@ CREATE TABLE `arc_mittenti` (
   `telefono` varchar(150) DEFAULT NULL,
   `fax` varchar(150) DEFAULT NULL,
   `codicefiscale` varchar(16) DEFAULT NULL,
-  `email` varchar(120) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `pec` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -408,7 +408,7 @@ fax,
 codicefiscale,
 email
 ) select distinct TITOLO, NOME, COGNOME, TOPONIMO, CAP, COMUNE, PROVINCIA, LOCALITA, TELEFONO, FAX, CODICEFISCALE ,EMAIL
-  from pratiche where DATAREGISTRAZIONE >= '2016-01-01'
+  from pratiche where DATAREGISTRAZIONE >= '2016-01-01';
 
 -- Tipo anagrafica (Titolo) da inserire in sys_fields_validations
 delete from sys_fields_validations where FIELD_NAME = 'tipo_anagrafica';
