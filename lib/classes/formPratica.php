@@ -52,7 +52,7 @@ class formPratica extends formExtended
         $this->editProprietario();
         $this->editMittente();
         $this->editAltriDestinatari();
-        $this->editTitolazione();
+//        $this->editTitolazione();
         $this->editVincoli();
 
         $this->editIstruttoria();
@@ -196,7 +196,7 @@ class formPratica extends formExtended
                 }
             }
         }
-        $this->_FormFields['RESPONSABILE']->showDivField();
+//        $this->_FormFields['RESPONSABILE']->showDivField();
 //        $this->_FormFields['RESPONSABILE_ID']->showDivField();
 //        $this->_FormFields['FALDONE']->showDivField();
         // $this->_FormFields['ESITO_ID']->showDivField();
@@ -217,7 +217,12 @@ class formPratica extends formExtended
 
         print('<br>');
 
-        print('<div dojoType="dojo.data.ItemFileReadStore" ' . 'url="xml/jsonSql.php?sql=select * from arc_esiti" ' . 'jsId="testJsonPhp" ' . '/>');
+        $this->_FormFields['FASIDENTIFICATIVO']->showDivField();
+        $this->_FormFields['CAUSALE']->showDivField();
+
+
+
+        print('<div dojoType="dojo.data.ItemFileReadStore" ' . 'url="xml/jsonSql.php?sql=select * from arc_esiti order by description" ' . 'jsId="testJsonPhp" ' . '/>');
         print('<label for="ESITO_ID">Esito</label>');
         print('<div dojoType="dijit.form.FilteringSelect" style="width: 400px;" ID="SEL_ESITO"
 								store="testJsonPhp"
@@ -229,16 +234,6 @@ class formPratica extends formExtended
 								name="ESITO_ID" ' . 'value="' . $this->_FormFields['ESITO_ID']->GetValue() . '" ' . '></div>');
 
         print('<br>');
-//         if (! $project = dbselect('select * from arc_pratiche_prj where pratica_id = ' . $this->_FormFields['PRATICA_ID']->GetValue()) or strlen($this->_FormFields['PROJECT_ID']->GetValue()) == 0) {
-//             $this->_FormFields['PROJECT_ID']->showDivField();
-//         } else {
-//             print('<label>Progetto</label>
-// 						<span>' . $project['ROWS'][0]['DESCRIPTION'] . '
-// 						<i class="fa fa-trash" onclick="deleteProject(' . $project['ROWS'][0]['PROJECT_ID'] . ',' . $this->_FormFields['PRATICA_ID']->GetValue() . ')"> </i>
-// 						</span><br>');
-//             // $this->_FormFields['PROJECT_ID']->dispDivField();
-//             print('<input type="hidden" name="PROJECT_ID" value="' . $this->_FormFields['PROJECT_ID']->GetValue() . '" >');
-//         }
 
         if ($this->_FormFields['SCADENZA']->GetValue() > ' ') {
 
@@ -583,7 +578,7 @@ class formPratica extends formExtended
             'name="RicercaMittente" ' .
             'id="RicercaMittente" ' .
             ' value="" ' .
-            ' style="width:300px;" ' .
+            ' style="width:800px;" ' .
             ' required="false" ' .
             ' searchDelay="500" ' .
 //            ' pageSize="50" ' .
@@ -676,16 +671,16 @@ class formPratica extends formExtended
         print('<fieldset style="border:none">' . "\n");
         $this->_FormFields['ISTR01']->showDivField();
         $this->_FormFields['ISTR02']->showDivField();
-        $this->_FormFields['ISTR03']->showDivField();
         print('</fieldset>' . "\n");
         print('</div>');
     }
 
     protected function editIntegrazioni()
     {
-        print('<div dojoType="dijit.layout.ContentPane" title="Integrazioni" selected="' . $this->isPaneSelected('integrazioni') . '" >');
+        print('<div dojoType="dijit.layout.ContentPane" title="Monumentale" selected="' . $this->isPaneSelected('integrazioni') . '" >');
         print('<fieldset style="border:none">' . "\n");
         $this->_FormFields['NOTE01']->showDivField();
+        $this->_FormFields['ISTR03']->showDivField();
         $this->_FormFields['NOTE02']->showDivField();
         print('</fieldset>' . "\n");
         print('</div>');
@@ -702,6 +697,7 @@ class formPratica extends formExtended
         $this->_FormFields['PAE_MOTIVAZIONI']->showDivField();
         $this->_FormFields['PAE_NOTE_PRESCRIZIONI']->showDivField();
         $this->_FormFields['PAE_INTEGRAZIONI']->showDivField();
+        $this->_FormFields['DESCRIZIONE']->showDivField();
         print('</fieldset>' . "\n");
         print('</div>');
     }
@@ -742,7 +738,7 @@ class formPratica extends formExtended
                         }
                         return false;
                     </script>
-                    <div dojoType="dojo.data.ItemFileReadStore" ' . 'url="xml/jsonSql.php?nullValue=N&sql=select UOID, DESCRIPTION from arc_organizzazione  where uoid <> 1" ' . 'jsId="selUOID" ' . '>
+                    <div dojoType="dojo.data.ItemFileReadStore" ' . 'url="xml/jsonSql.php?nullValue=N&sql=select UOID, DESCRIPTION from arc_organizzazione  where uoid <> 1 order by DESCRIPTION" ' . 'jsId="selUOID" ' . '>
                     </div>
                     <div style="width:200px;" dojoType="dijit.form.FilteringSelect" ID="addUOID"
                                 store="selUOID"
