@@ -23,7 +23,7 @@ dojo.addOnLoad(function() {
 			// Note that there isn't a url passed.  xhrPost will extract the url to call from the form's
 			//'action' attribute.  You could also leave off the action attribute and set the url of the xhrPost object
 			// either should work.
-            console.log(dojo.query('input.uoidchk:checked').length);
+            // console.log(dojo.query('input.uoidchk:checked').length);
 			if(formWidget.validate()){
 
 			    formData = formWidget.getValues();
@@ -98,7 +98,7 @@ dojo.addOnLoad(function() {
 	        } else if(node.value == 'Interno' && node.checked ){
 	            dijit.byId('classifica').set('disabled',false);
 	            dijit.byId('classifica2').set('disabled',false);
-	            dijit.byId('fascicolo').set('disabled', true);
+	            dijit.byId('fascicolo').set('disabled', false);
 	            dijit.byId('clsTestataDocumento_numeroregistrazione').set('disabled',true);
 	            dijit.byId('clsTestataDocumento_Data').set('disabled', true);
 	            dijit.byId('clsTestataDocumento_Arrivo').set('disabled', true);
@@ -112,9 +112,9 @@ dojo.addOnLoad(function() {
                 // });
 
 	        } else if(node.value == 'Entrata' && node.checked ){
-	            dijit.byId('classifica').set('disabled',true);
-	            dijit.byId('classifica2').set('disabled',true);
-	            dijit.byId('fascicolo').set('disabled', true);
+	            dijit.byId('classifica').set('disabled',false);
+	            dijit.byId('classifica2').set('disabled',false);
+	            dijit.byId('fascicolo').set('disabled', false);
 	            dijit.byId('clsTestataDocumento_numeroregistrazione').set('disabled',false);
 	            dijit.byId('clsTestataDocumento_Data').set('disabled', false);
 	            dijit.byId('clsTestataDocumento_Arrivo').set('disabled', false);
@@ -155,7 +155,7 @@ dojo.addOnLoad(function() {
 	            } else if(node.value == 'Interno'){
 	                dijit.byId('classifica').set('disabled',false);
 	                dijit.byId('classifica2').set('disabled',false);
-	                dijit.byId('fascicolo').set('disabled', true);
+	                dijit.byId('fascicolo').set('disabled', false);
 	                dijit.byId('protAssegnazione').set('disabled',true);
 	                dijit.byId('clsTestataDocumento_numeroregistrazione').set('disabled',true);
 	                dijit.byId('clsTestataDocumento_Data').set('disabled', true);
@@ -170,9 +170,9 @@ dojo.addOnLoad(function() {
 					dojo.style('mittente','display','none');
 					// dojo.style('assegnazioneUo','display','none');
 	            } else {
-	                dijit.byId('classifica').set('disabled',true);
-	                dijit.byId('classifica2').set('disabled',true);
-	                dijit.byId('fascicolo').set('disabled', true);
+	                dijit.byId('classifica').set('disabled',false);
+	                dijit.byId('classifica2').set('disabled',false);
+	                dijit.byId('fascicolo').set('disabled', false);
 					dijit.byId('protAssegnazione').set('disabled',false);
 	                dijit.byId('clsTestataDocumento_numeroregistrazione').set('disabled',false);
 	                dijit.byId('clsTestataDocumento_Data').set('disabled', false);
