@@ -54,7 +54,7 @@ class EspiWS
             case 'Entrata':
 
                 $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['TipoProtocollo'] = 'Entrata';
-                $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['enOperazioneProtocollo'] = 'CreaProtocolloSenzaClassifica';
+//                $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['enOperazioneProtocollo'] = 'CreaProtocolloSenzaClassifica';
                 unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']);
                 unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputTitolario']);
                 break;
