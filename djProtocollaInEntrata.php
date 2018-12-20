@@ -55,7 +55,20 @@ include "login/autentication.php";
             $espiWs = new EspiWS();
 
             $espiWs->setTipoProtocollo('Entrata');
+
+            $espiWs->setFascicolo($_POST['DesFascicolo']);
+            // Titolario
+            $espiWs->setTitolario(array(
+                'ClasseTitolario' => $_POST['ClasseTitolario'],
+                'DesTitolario' => $_POST['DesTitolario']
+            ));
+
             $espiWs->setTestataDocumento($_POST['clsTestataDocumento']);
+            $mittenti = array();
+
+
+            $espiWs->setCodiceUfficioCompetente($_POST['CodUfficioCompetente']);
+
 
             $espiWs->setMittenteDestinatario(array( 0 => $_POST['clsTMittenteDestinatario']));
 
