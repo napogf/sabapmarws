@@ -205,7 +205,7 @@ if ($isProtocollatore) {
                      >
         </div>
         <span style="font-weight: bold; margin: 0px 5px">4° livello</span>
-        <input type="TEXT" id="classifica2" maxlength="2" style="width: 30px;" title="Se applicabile 4° livello di classifica senza punto es. 01" 
+        <input type="TEXT" id="classifica2" maxlength="3" style="width: 30px;" title="Se applicabile 4° livello di classifica senza punto es. 01" 
         value="" name="classifica2" dojoType="dijit.form.ValidationTextBox"><br/>');
 
     print('<label>Fascicolo</label>
