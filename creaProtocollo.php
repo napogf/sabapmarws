@@ -77,16 +77,16 @@ if (isSet($_POST) and ! empty($_POST)) {
             $espiWs = new EspiWS();
 
             $espiWs->setTipoProtocollo($post['tipologia']);
-            if ($post['tipologia'] == 'Uscita') {
-                $titolario = $db->query('SELECT
+            $titolario = $db->query('SELECT
                     classificazione as ClasseTitolario, description as DesTitolario
                 FROM arc_modelli WHERE modello = :modello', [
-                    ':modello' => $post['classifica']
-                ])->fetch();
+                ':modello' => $post['classifica']
+            ])->fetch();
+            $espiWs->setTitolario($titolario,$post['classifica2']);
+            $espiWs->setFascicolo($post['fascicolo']);
+            if ($post['tipologia'] == 'Uscita') {
                 unset($post['clsTestataDocumento']['Arrivo']);
                 $post['clsTestataDocumento']['Data'] = date('d/m/Y');
-                $espiWs->setTitolario($titolario,$post['classifica2']);
-                $espiWs->setFascicolo($post['fascicolo']);
             }
 
             $espiWs->setTestataDocumento($post['clsTestataDocumento']);
@@ -384,7 +384,7 @@ if ($isProtocollatore) {
 
     $userUo = $db->query('SELECT arc_organizzazione.uoid from arc_organizzazione 
                             RIGHT JOIN user_uo_ref ON (user_uo_ref.UOID = arc_organizzazione.UOID)
-                            WHERE user_uo_ref.USER_ID = :user_id',[
+                            WHERE user_uo_ref.USER_ID = :user_id order by DESCRIPTION',[
                                 ':user_id' => $_SESSION['sess_uid'],
     ])->fetchAll(PDO::FETCH_COLUMN);
 
