@@ -24,8 +24,68 @@ dojo.addOnLoad(function() {
 	// dojo.query('[widgetid]',dojo.byClass('protocollazione'))
 
 	var formProtocollazione = dojo.byId("formProtocollazionePec");
-	
-	
+
+	new dijit.form.FilteringSelect({
+			store: fascicoloStore,
+			labelAttr: 'description',
+			searchAttr: 'description',
+			name: "fascicolo",
+			autoComplete: true,
+			style: "width: 400px;",
+			id: "fascicolo",
+			disabled: true,
+			required: false,
+
+		},
+		"fascicolo");
+
+
+	new dijit.form.FilteringSelect({
+			store: classificaStore,
+			labelAttr: 'DESCRIPTION',
+			searchAttr: 'DESCRIPTION',
+			name: "classifica",
+			autoComplete: true,
+			required: false,
+			style: "width: 400px;",
+			id: "classifica",
+			onChange: function(MODELLO) {
+				console.log(MODELLO);
+				if(MODELLO){
+					var classifica = classificaStore._arrayOfAllItems.filter(item => { return item.MODELLO[0] == MODELLO })
+					dijit.byId('fascicolo').attr('disabled',false);
+					dijit.byId('classifica2').attr('disabled',false);
+					dijit.byId('classifica2').attr('value','');
+					dijit.byId('classifica2').query.classificazione = classifica[0].classificazione[0];
+				} else {
+
+					dijit.byId('fascicolo').attr('disabled',true);
+					dijit.byId('fascicolo').attr('value','');
+					dijit.byId('classifica2').attr('disabled',true);
+					dijit.byId('classifica2').attr('value','');
+
+				}
+			}
+
+		},
+		"classifica");
+
+
+	new dijit.form.FilteringSelect({
+			store: livelloStore,
+			labelAttr: 'descrizione',
+			searchAttr: 'descrizione',
+			valueAttr: 'codice',
+			disabled: true,
+			required: false,
+			name: "classifica2",
+			autoComplete: true,
+			style: "width: 400px;",
+			id: "classifica2",
+			query : { classificazione : "*"},
+		},
+		"classifica2");
+
 	if(formProtocollazione != null){
 	    dojo.connect(formProtocollazione, "onsubmit", function(event) {
 			// Stop the submit event since we want to control form submission.

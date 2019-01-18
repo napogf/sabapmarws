@@ -936,6 +936,7 @@ print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
 <script language="JavaScript" type="text/javascript">
 
 	dojo.addOnLoad(function(){
+
 	    new dijit.form.FilteringSelect({
 	                store: sDocumenti,
 	                labelAttr: 'DESCRIPTION',

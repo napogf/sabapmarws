@@ -79,6 +79,7 @@ ifdefined('LOGIN_PATH',                ROOT_PATH . '/login' );
 ifdefined('TRASPARENZA_PATH',        ROOT_PATH . '/trasparenza' );
 ifdefined('ARCHIVIO_PATH',        dirname(ROOT_PATH) . '/archiviodigitale' );
 
+
 ini_set('include_path', ini_get('include_path') . ':' . ROOT_PATH . '/inc');
 
 $phpParams = array(

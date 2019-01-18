@@ -56,12 +56,22 @@ include "login/autentication.php";
 
             $espiWs->setTipoProtocollo('Entrata');
 
-            $espiWs->setFascicolo($_POST['DesFascicolo']);
+            $espiWs->setFascicolo($_POST['classifica2'] , $_POST['fascicolo']);
             // Titolario
-            $espiWs->setTitolario(array(
-                'ClasseTitolario' => $_POST['ClasseTitolario'],
-                'DesTitolario' => $_POST['DesTitolario']
-            ));
+            if(isSet($_POST['classifica'])){
+                $titolario = Db_Pdo::getInstance()  ->query('SELECT
+                    classificazione as ClasseTitolario, description as DesTitolario
+                FROM arc_modelli WHERE modello = :modello', [
+                    ':modello' => $_POST['classifica']
+                ])->fetch();
+                $espiWs->setTitolario($titolario);
+            } else {
+                $espiWs->setTitolario(array(
+                    'ClasseTitolario' => $_POST['ClasseTitolario'],
+                    'DesTitolario' => $_POST['DesTitolario']
+                ));
+            }
+
 
             $espiWs->setTestataDocumento($_POST['clsTestataDocumento']);
             $mittenti = array();
@@ -73,6 +83,7 @@ include "login/autentication.php";
             $espiWs->setMittenteDestinatario(array( 0 => $_POST['clsTMittenteDestinatario']));
 
             $espiWs->setCodiceUfficioCompetente($_POST['CodUfficioCompetente']);
+
 
 
             $espiWs->protocollaDocumento();
