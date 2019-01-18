@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:wses="http://intersistemi.it/WsEspiASPVX.org/">
+   <soap:Header/>
+   <soap:Body>
+        <wses:ProtocollaDocumentoV2>
+            <wses:clsInputOperazione>
+                <wses:VersioneWS>3</wses:VersioneWS>
+                <wses:UserID>RIC_INVIO_PEC</wses:UserID>
+                <wses:Password>Sabap2018</wses:Password>
+                <wses:CodUtenteProtocollatore>RIC_INVIO_PEC</wses:CodUtenteProtocollatore>
+                <wses:CodUfficioCompetente>ESPI</wses:CodUfficioCompetente>
+                <wses:clsInputAOO>
+                    <wses:N_COD_AOO>0</wses:N_COD_AOO>
+                    <wses:C_DES_AOO>MBAC-SABAP-MAR</wses:C_DES_AOO>
+                </wses:clsInputAOO>
+                <wses:clsInputFascicolo>
+                   <wses:CodFascicolo>62.2</wses:CodFascicolo>
+                    <wses:DesFascicolo>Paesaggio</wses:DesFascicolo>
+                </wses:clsInputFascicolo>
+                <wses:clsInputTitolario>
+                    <wses:ClasseTitolario>34.19.07</wses:ClasseTitolario>
+                    <wses:DesTitolario>Lavori di interesse privato</wses:DesTitolario>
+                </wses:clsInputTitolario>
+                <wses:clsInputProtocollo>
+                    <wses:TipoProtocollo>Entrata</wses:TipoProtocollo>
+                    <wses:clsTestataDocumento>
+                        <wses:Oggetto>PESARO PU DITTA MONTINARO ANTONIO TRASMISSIONE INDENNITA RISARCITORIA PRATICA
+                            CONDONO N 620/97
+                        </wses:Oggetto>
+                        <wses:Data>12/12/2018</wses:Data>
+                        <wses:Arrivo>02/01/2019</wses:Arrivo>
+                        <wses:Numero>128270</wses:Numero>
+                        <wses:Allegati>0</wses:Allegati>
+                        <wses:Note/>
+                    </wses:clsTestataDocumento>
+                    <wses:enOperazioneProtocollo>CreaProtocolloConClassifica</wses:enOperazioneProtocollo>
+                    <wses:ListaMittentiDestinatari>
+                        <wses:clsTMittenteDestinatario>
+                            <wses:DesTipoAnagrafica>COMUNI PROV PESARO</wses:DesTipoAnagrafica>
+                            <wses:Cognome>COMUNE DI PESARO</wses:Cognome>
+                            <wses:Nome/>
+                            <wses:CF/>
+                            <wses:Indirizzo/>
+                            <wses:Localita/>
+                            <wses:CAP>61100</wses:CAP>
+                            <wses:Comune>PESARO</wses:Comune>
+                            <wses:Provincia>Pesaro-Urbino</wses:Provincia>
+                            <wses:Telefono/>
+                            <wses:Fax>0721/387470</wses:Fax>
+                            <wses:PerConoscenza>false</wses:PerConoscenza>
+                        </wses:clsTMittenteDestinatario>
+                    </wses:ListaMittentiDestinatari>
+                </wses:clsInputProtocollo>
+                <wses:UpdateProtoStoria>Si</wses:UpdateProtoStoria>
+            </wses:clsInputOperazione>
+        </wses:ProtocollaDocumentoV2>
+   </soap:Body>
+</soap:Envelope>
