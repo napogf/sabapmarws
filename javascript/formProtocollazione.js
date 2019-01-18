@@ -1,8 +1,62 @@
+function filterClassifica(ev){
+	console.log(dojo(ev));
+}
+
+
 dojo.addOnLoad(function() {
 	
 //	dojo.byId('filesForm').onSubmit(function(e){
 //		e.preventDefault();
 //	});
+
+	new dijit.form.FilteringSelect({
+			store: fascicoloStore,
+			labelAttr: 'description',
+			searchAttr: 'description',
+			required: true,
+			name: "fascicolo",
+			autoComplete: true,
+			style: "width: 400px;",
+			id: "fascicolo",
+
+		},
+		"fascicolo");
+
+
+	new dijit.form.FilteringSelect({
+			store: classificaStore,
+			labelAttr: 'DESCRIPTION',
+			searchAttr: 'DESCRIPTION',
+			required: true,
+			name: "classifica",
+			autoComplete: true,
+			style: "width: 400px;",
+			id: "classifica",
+			onChange: function(MODELLO) {
+				var classifica = classificaStore._arrayOfAllItems.filter(item => { return item.MODELLO[0] == MODELLO })
+				console.log(classifica);
+				dijit.byId('classifica2').attr('value','');
+				dijit.byId('classifica2').query.classificazione = classifica[0].classificazione[0];
+			}
+
+		},
+		"classifica");
+
+
+	new dijit.form.FilteringSelect({
+			store: livelloStore,
+			labelAttr: 'descrizione',
+			searchAttr: 'descrizione',
+			valueAttr: 'codice',
+			disabled: true,
+			name: "classifica2",
+			autoComplete: true,
+			style: "width: 400px;",
+			id: "classifica2",
+			query : { classificazione : "*"},
+		},
+		"classifica2");
+
 
 
 

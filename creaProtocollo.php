@@ -82,8 +82,8 @@ if (isSet($_POST) and ! empty($_POST)) {
                 FROM arc_modelli WHERE modello = :modello', [
                 ':modello' => $post['classifica']
             ])->fetch();
-            $espiWs->setTitolario($titolario,$post['classifica2']);
-            $espiWs->setFascicolo($post['fascicolo']);
+            $espiWs->setTitolario($titolario);
+            $espiWs->setFascicolo($post['classifica2'],$post['fascicolo']);
             if ($post['tipologia'] == 'Uscita') {
                 unset($post['clsTestataDocumento']['Arrivo']);
                 $post['clsTestataDocumento']['Data'] = date('d/m/Y');
@@ -183,43 +183,35 @@ if ($isProtocollatore) {
         ');
 
     print('<br />');
+    print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
+        'url="xml/fascicoli.json" ' .
+        'jsId="fascicoloStore" ' .
+        '></div>');
 
     print('<label for="classifica" >Classifica</label>
 
+            
             <div dojoType="dojo.data.ItemFileReadStore"
-                    url="xml/jsonSql.php?nullValue=Y&sql=select distinct am.MODELLO,concat(am.classificazione,\'-\',am.description) as DESCRIPTION  from arc_modelli am order by 2"
+                    url="xml/jsonSql.php?nullValue=Y&sql=select distinct am.MODELLO,concat(am.classificazione,\'-\',am.description) as DESCRIPTION, am.classificazione  from arc_modelli am order by 2"
                     jsId="classificaStore" >
             </div>
+            <input id="classifica" value="'. (isSet($_POST['classifica']) ? $_POST['classifica'] : '') .'" />');
 
-            <div dojoType="dijit.form.FilteringSelect"
-                    store="classificaStore"
-					searchAttr="DESCRIPTION"
-                    name="classifica"
-                    required="true"
-                    disabled="true"
-                    id="classifica"
-                    value="'. (isSet($_POST['classifica']) ? $_POST['classifica'] : '') .'"
-                    style="width:200px;"
-                    queryExpr="*${0}*"
-                    searchDelay="1000"
-                     >
-        </div>
-        <span style="font-weight: bold; margin: 0px 5px">4° livello</span>
-        <input type="TEXT" id="classifica2" maxlength="3" style="width: 30px;" title="Se applicabile 4° livello di classifica senza punto es. 01" 
-        value="" name="classifica2" dojoType="dijit.form.ValidationTextBox"><br/>');
+    print('<br />');
+
+    print('<label for="classifica2" >4° Livello</label>
+
+            <div dojoType="dojo.data.ItemFileReadStore"
+                    url="xml/jsonSql.php?nullValue=Y&sql=select * from arc_modelli_classifica order by 1"
+                    jsId="livelloStore" >
+            </div>
+
+            <input id="classifica2" value="'. (isSet($_POST['classifica']) ? $_POST['classifica'] : '') .'" />
+            <br />');
+
 
     print('<label>Fascicolo</label>
-                    <select dojoType="dijit.form.FilteringSelect" id="fascicolo" disabled="true" name="fascicolo" style="width:250px;">
-                        <option value="Monumentale" ' .
-                                ( (isSet($_POST['fascicolo']) && $_POST['fascicolo'] == 'Monumentale') ? 'selected' : '') .
-                            ' >Monumentale</option>                    
-                        <option value="Paesaggio" ' .
-                            ( (isSet($_POST['fascicolo']) && $_POST['fascicolo'] == 'Paesaggio') ? 'selected' : '') .
-                            ' >Paesaggio</option>
-                        <option value="Archeologia" ' .
-                            ( (isSet($_POST['fascicolo']) && $_POST['fascicolo'] == 'Archeologia') ? 'selected' : '') .
-                            ' >Archeologia</option>
-                    </select>');
+           <input id="fascicolo" value="'. (isSet($_POST['fascicolo']) ? $_POST['fascicolo'] : '') .'" />');
     print('<br />');
 
     // Testata Documento

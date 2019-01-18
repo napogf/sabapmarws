@@ -3,6 +3,13 @@
 class EspiWS
 {
 
+    protected $_fascicolo = [
+                                1 => ['description' => 'monumentale', 'codice' => 1 ],
+                                2 => ['description' => 'archeologica', 'codice' => 2 ],
+                                3 => ['description' => 'paesaggistica', 'codice' => 2]
+                            ];
+
+
     public function __construct()
     {
         $confWs = array();
@@ -52,11 +59,8 @@ class EspiWS
     {
         switch ($tipoProtocollo) {
             case 'Entrata':
-
                 $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['TipoProtocollo'] = 'Entrata';
-//                $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['enOperazioneProtocollo'] = 'CreaProtocolloSenzaClassifica';
-                unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']);
-                unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputTitolario']);
+
                 break;
             default:
                 $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['TipoProtocollo'] = $tipoProtocollo;
@@ -86,16 +90,30 @@ class EspiWS
         return $this;
     }
 
-    public function setFascicolo($desFascicolo)
+    public function setFascicolo($livello4=null,$fascicoloId=null)
     {
-        $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']['DesFascicolo'] = $desFascicolo;
+
+        if($livello4 > '' && $fascicoloId > ''){
+            $codiceLivello4 = Db_Pdo::getInstance()->query('select codice from arc_modelli_classifica where id = :id',[
+                ':id' => $livello4,
+            ])->fetchColumn();
+
+            $fascicolo = $this->_fascicolo[$fascicoloId];
+            $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']['CodFascicolo'] = $codiceLivello4 . '.' . $fascicolo['codice'] ;
+            $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']['DesFascicolo'] = $fascicolo['description'];
+        } elseif(empty($livello4) && $fascicoloId > '') {
+            r('Errore nella definizione del fascicolo');
+        } else {
+            $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputProtocollo']['enOperazioneProtocollo'] = 'CreaProtocolloSenzaClassifica';
+            unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputFascicolo']);
+            unset($this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputTitolario']);
+        }
 
         return $this;
     }
 
-    public function setTitolario($titolario,$classifica2 = null)
+    public function setTitolario($titolario)
     {
-
         $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputTitolario']['ClasseTitolario'] = $titolario['ClasseTitolario'] . (empty($classifica2) ? '' : '.' . $classifica2);
         $this->_wsStruct['ProtocollaDocumentoV2']['clsInputOperazione']['clsInputTitolario']['DesTitolario'] = $titolario['DesTitolario'];
 
@@ -247,7 +265,6 @@ class EspiWS
                 'stream_context' => $streamContext,
                 'soap_version' => SOAP_1_1
             ));
-
             $wService = $wsClient->$service($this->_wsStruct[$service]);
 
             /*

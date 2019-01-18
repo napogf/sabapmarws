@@ -278,6 +278,38 @@ class myDbForm extends formExtended {
             print('<input type="hidden" maxlength="150" size="10" value="' . $_GET['PEC_ID'] . '" dojoType="dijit.form.TextBox"
                             name="ws_pec_id" >');
             // Testata Documento
+
+            print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
+                'url="xml/fascicoli.json" ' .
+                'jsId="fascicoloStore" ' .
+                '></div>');
+
+            print('<label for="classifica" >Classifica</label>
+
+            
+            <div dojoType="dojo.data.ItemFileReadStore"
+                    url="xml/jsonSql.php?nullValue=Y&sql=select distinct am.MODELLO,concat(am.classificazione,\'-\',am.description) as DESCRIPTION, am.classificazione  from arc_modelli am order by 2"
+                    jsId="classificaStore" >
+            </div>
+            <input id="classifica" value="'. (isSet($_POST['classifica']) ? $_POST['classifica'] : '') .'" />');
+
+            print('<br />');
+
+            print('<label for="classifica2" >4° Livello</label>
+
+            <div dojoType="dojo.data.ItemFileReadStore"
+                    url="xml/jsonSql.php?nullValue=Y&sql=select * from arc_modelli_classifica order by 1"
+                    jsId="livelloStore" >
+            </div>
+
+            <input id="classifica2" value="'. (isSet($_POST['classifica']) ? $_POST['classifica'] : '') .'" />
+            <br />');
+
+
+            print('<label>Fascicolo</label>
+           <input id="fascicolo" value="'. (isSet($_POST['fascicolo']) ? $_POST['fascicolo'] : '') .'" />');
+            print('<br />');
+
             print('<label>Oggetto</label>');
             print('<textarea rows="4" 
                                     wrap="PHYSICAL" id="clsTestataDocumento_Oggetto" 

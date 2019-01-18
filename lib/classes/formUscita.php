@@ -154,37 +154,64 @@ class formUscita extends formPratica
                             name="ws_pratica_id" >');
             print('<input id="ws_tipologia" type="hidden" maxlength="150" size="10" value="U" name="ws_protocollazione" >');
             print('<fieldset><legend>Pratica</legend>');
-            // Fascicolo
-
-            print('<label>Fascicolo</label>
-                    <select dojoType="dijit.form.FilteringSelect" id="DesFascicolo" name="DesFascicolo" style="width:250px;">
-                        <option value="Monumentale" ' .
-                ( (isSet($_POST['DesFascicolo']) && $_POST['DesFascicolo'] == 'Monumentale') ? 'selected' : '') .
-                ' >Monumentale</option>                    
-                        <option value="Paesaggio" ' .
-                ( (isSet($_POST['DesFascicolo']) && $_POST['DesFascicolo'] == 'Paesaggio') ? 'selected' : '') .
-                ' >Paesaggio</option>
-                        <option value="Archeologia" ' .
-                ( (isSet($_POST['DesFascicolo']) && $_POST['DesFascicolo'] == 'Archeologia') ? 'selected' : '') .
-                ' >Archeologia</option>
-                    </select>');
-
-
-            print('<br />');
 
             // Titolario
-            $modello = Db_Pdo::getInstance()->query('SELECT * FROM arc_modelli WHERE modello = :modello', array(
-                ':modello' => $this->_FormFields['MODELLO']->getValue()
-            ))
-            ->fetch();
-            $titolario = array(
-                'ClasseTitolario' => $modello['CLASSIFICAZIONE'],
-                'DesTitolario' => $modello['DESCRIPTION']
-            );
-            print('<label>Titolario</label>
-                            <input class=" djCodice" type="TEXT" maxlength="150" size="10" value="' . $modello['CLASSIFICAZIONE'] . '" id="ClasseTitolario" name="ClasseTitolario" dojoType="dijit.form.ValidationTextBox"> -
-                            <input class=" djDescrizione" type="TEXT" maxlength="150" size="40" value="' . $modello['DESCRIPTION'] . '" id="DesTitolario" name="DesTitolario" dojoType="dijit.form.ValidationTextBox">');
+//            $modello = Db_Pdo::getInstance()->query('SELECT * FROM arc_modelli WHERE modello = :modello', array(
+//                ':modello' => $this->_FormFields['MODELLO']->getValue()
+//            ))
+//            ->fetch();
+//            $titolario = array(
+//                'ClasseTitolario' => $modello['CLASSIFICAZIONE'],
+//                'DesTitolario' => $modello['DESCRIPTION']
+//            );
+//            print('<label>Titolario</label>
+//                            <input class=" djCodice" type="TEXT" maxlength="150" size="10" value="' . $modello['CLASSIFICAZIONE'] . '" id="ClasseTitolario" name="ClasseTitolario" dojoType="dijit.form.ValidationTextBox"> -
+//                            <input class=" djDescrizione" type="TEXT" maxlength="150" size="40" value="' . $modello['DESCRIPTION'] . '" id="DesTitolario" name="DesTitolario" dojoType="dijit.form.ValidationTextBox">');
+            print('<label for="classifica" >Classifica</label>
+
+            
+            <div dojoType="dojo.data.ItemFileReadStore"
+                    url="xml/jsonSql.php?nullValue=Y&sql=select distinct am.MODELLO,concat(am.classificazione,\'-\',am.description) as DESCRIPTION, am.classificazione  from arc_modelli am order by 2"
+                    jsId="classificaStore" >
+            </div>');
+
+            print('<div dojoType="dijit.form.FilteringSelect"
+                    store="classificaStore"
+					searchAttr="DESCRIPTION"
+                    name="classifica"
+                    required="true"
+                    readonly="true"
+                    id="classifica"
+                    value="'. $this->_FormFields['MODELLO']->getValue()  .'"
+                    style="width:400px;"
+                    queryExpr="*${0}*"
+                    searchDelay="1000"
+                     ></div>');
+
             print('<br />');
+
+            print('<label for="classifica2" >4° Livello</label>
+
+            <div dojoType="dojo.data.ItemFileReadStore"
+                    url="xml/livelloStore.php?modello=' . $this->_FormFields['MODELLO']->getValue() .  '"
+                    jsId="livelloStore" >
+            </div>
+
+            <input id="classifica2" value="" />
+            <br />');
+
+            print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
+                'url="xml/fascicoli.json" ' .
+                'jsId="fascicoloStore" ' .
+                '></div>');
+
+            print('<label>Fascicolo</label>
+           <input id="fascicolo" value="" />');
+            print('<br />');
+
+
+
+
             // Testata Documento
             print('<label>Oggetto</label>');
             print('<textarea  id="clsTestataDocumento_Oggetto" class="w600"  
