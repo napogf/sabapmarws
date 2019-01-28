@@ -14,10 +14,25 @@ if (($handle = fopen($fileToRead, "r")) !== FALSE) {
     while (($data = fgetcsv($handle,null,';')) !== FALSE) {
         if($data[1] > ''){
             $foundPrefix = preg_match('/(\d+).\(ESPI\)(.*)/', $data[2],$match);
+//            r($classifica_des1 = trim(substr($data[0],strpos($data[2],'-')+1)),false);
+            $classifica_des1 = trim(substr($data[0],strpos($data[2],'-')+1));
+//            r($classifica_des2 = trim(substr($data[2],strpos($data[2],'-')+1)),false);
+            $classifica_des2 = trim(substr($data[2],strpos($data[2],'-')+1));
+//            r($data);
+            if($db->query('select * from arc_modelli where CLASSIFICAZIONE = :classifica',[
+                ':classifica' => $data[1],
+            ])->fetch()){
+                $db->query('update arc_modelli set classifica_des = :classifica_des where CLASSIFICAZIONE = :classificazione',[
+                    ':classificazione' => $data[1],
+                    ':classifica_des' => $classifica_des1,
+                ]);
+
+            }
             $db->query('insert into arc_modelli_classifica (codice, classificazione , descrizione) values (:codice, :classificazione , :descrizione)',[
-                ':codice' => (integer) $match[1],
+                ':codice' => (integer) $data[3],
                 ':classificazione' => $data[1],
-                ':descrizione' => $foundPrefix ? trim($match[2],' -') : trim($data[2]),
+                ':descrizione' => $classifica_des2,
+//                ':descrizione' => $foundPrefix ? trim($match[2],' -') : trim($data[2]),
             ]);
         }
     }
