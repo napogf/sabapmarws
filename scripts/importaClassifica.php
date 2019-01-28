@@ -16,9 +16,6 @@ if (($handle = fopen($fileToRead, "r")) !== FALSE) {
             $foundPrefix = preg_match('/(\d+).\(ESPI\)(.*)/', $data[2],$match);
             $classifica_des1 = trim(substr($data[0],strpos($data[0],'-')+1));
             $classifica_des2 = trim(substr($data[2],strpos($data[2],'-')+1));
-            r($classifica_des1,false);
-            r($classifica_des2,false);
-            continue;
 //            r($data);
             if($db->query('select * from arc_modelli where CLASSIFICAZIONE = :classifica',[
                 ':classifica' => $data[1],
