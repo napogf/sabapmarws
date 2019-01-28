@@ -416,7 +416,7 @@ class FormFields {
 									'id="'.$prefix.$this->GetId().'" ' .
 									' value="'.$this->GetValue().'" ' .
 									' style="width:'.$jxLength.'px;" '.
-									' queryExpr="*${0}*" ' .
+									' queryExpr="${0}*" ' .
 									' searchDelay="1000"  ' .
 									' pageSize="100" ' .
 //									' searchDelay="2000" ' .
