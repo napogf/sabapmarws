@@ -154,7 +154,20 @@ class formPratica extends formExtended
         $this->_FormFields['PRATICA_ID']->showDivField();
         $this->_FormFields['DATAREGISTRAZIONE']->showDivField();
         $this->_FormFields['NUMEROREGISTRAZIONE']->showDivField();
-        $this->_FormFields['MODELLO']->showDivField();
+//        $this->_FormFields['MODELLO']->showDivField();
+        print('<label for="MODELLO" >Tipo di Pratica<font face="Arial, Helvetica, sans-serif" >*</font></label>
+                <div dojoType="dojo.data.ItemFileReadStore" url="xml/jsonSql.php?nullValue=N&sql=select distinct am.MODELLO, am.description as DESCRIPTION  from arc_modelli am  order by 2" jsId="MODELLO_classifica" ></div>
+                <div dojoType="dijit.form.FilteringSelect"  store="MODELLO_classifica"
+							searchAttr="DESCRIPTION" 
+							name="MODELLO" 
+							id="modello"  value="' . $this->_FormFields['MODELLO']->getValue() . '"  
+							style="width:450px;"  
+							queryExpr="${0}*"  
+							searchDelay="1000"   
+							pageSize="100" ></div><br/>');
+
+
+
 //        $this->_FormFields['ZONA']->showDivField();
 //        $this->_FormFields['UFFICIO']->showDivField();
         $this->_FormFields['DATAARRIVO']->showDivField();
@@ -176,7 +189,7 @@ class formPratica extends formExtended
 							searchAttr="DESCRIPTION"
 							name="PRATICA_USCITA_ID"
 							id="1439"
-							queryExpr="*${0}*"
+							queryExpr="${0}*"
     							searchDelay="500" 
     							autocomplete="false" 
 							value="' . $this->_FormFields['PRATICA_USCITA_ID']->GetValue() . '"
