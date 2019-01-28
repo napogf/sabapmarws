@@ -78,7 +78,7 @@ if (isSet($_POST) and ! empty($_POST)) {
 
             $espiWs->setTipoProtocollo($post['tipologia']);
             $titolario = $db->query('SELECT
-                    classificazione as ClasseTitolario, description as DesTitolario
+                    classificazione as ClasseTitolario, classifica_des as DesTitolario
                 FROM arc_modelli WHERE modello = :modello', [
                 ':modello' => $post['classifica']
             ])->fetch();

@@ -37,7 +37,7 @@ try {
         // Titolario
         if(isSet($_POST['classifica'])){
             $titolario = $db->query('SELECT
-                    classificazione as ClasseTitolario, description as DesTitolario
+                    classificazione as ClasseTitolario, classifica_des as DesTitolario
                 FROM arc_modelli WHERE modello = :modello', [
                 ':modello' => $_POST['classifica']
             ])->fetch();

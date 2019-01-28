@@ -60,7 +60,7 @@ include "login/autentication.php";
             // Titolario
             if(isSet($_POST['classifica'])){
                 $titolario = Db_Pdo::getInstance()  ->query('SELECT
-                    classificazione as ClasseTitolario, description as DesTitolario
+                    classificazione as ClasseTitolario, classifica_des as DesTitolario
                 FROM arc_modelli WHERE modello = :modello', [
                     ':modello' => $_POST['classifica']
                 ])->fetch();
