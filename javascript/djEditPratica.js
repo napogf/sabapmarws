@@ -142,26 +142,6 @@ dojo.addOnLoad(function() {
         "fascicolo");
 
 
-    // new dijit.form.FilteringSelect({
-    //         store: classificaStore,
-    //         labelAttr: 'DESCRIPTION',
-    //         searchAttr: 'DESCRIPTION',
-    //         required: false,
-    //         name: "classifica",
-    //         autoComplete: true,
-    //         style: "width: 400px;",
-    //         id: "classifica",
-    //         value: parseInt(dojo.query('[name=MODELLO]')[0].value),
-    //         onChange: function(MODELLO) {
-    //             var classifica = classificaStore._arrayOfAllItems.filter(item => { return item.MODELLO[0] == MODELLO })
-    //             console.log(classifica);
-    //             dijit.byId('classifica2').attr('value','');
-    //             dijit.byId('classifica2').query.classificazione = classifica[0].classificazione[0];
-    //         }
-    //
-    //     },
-    //     "classifica");
-
 
     new dijit.form.FilteringSelect({
             store: livelloStore,

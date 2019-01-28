@@ -4,7 +4,6 @@ cd /var/www/scripts
 phpbin=$(which php)
 scriptpath=$(pwd)
 
-sudo mount -a
 if [ ! -e "/tmp/batchPecLoad.pid" ]; then
 #    if [ ! -e "$rootdir/pecmail/NON_CANCELLARE.TXT" ]; then
 #        echo "[`date`] : importazionePec.sh : il nas non è montato!" >> $rootdir/logs/importazionePec.log
