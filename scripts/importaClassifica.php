@@ -9,7 +9,6 @@ include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR .  "login/configsess.ph
 $db = Db_Pdo::getInstance();
 
 $fileToRead = ROOT_PATH . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . 'esempio_tabella_procediment.csv';
-
 if (($handle = fopen($fileToRead, "r")) !== FALSE) {
     while (($data = fgetcsv($handle,null,';')) !== FALSE) {
         if($data[1] > ''){
@@ -26,12 +25,17 @@ if (($handle = fopen($fileToRead, "r")) !== FALSE) {
                 ]);
 
             }
-            $db->query('insert into arc_modelli_classifica (codice, classificazione , descrizione) values (:codice, :classificazione , :descrizione)',[
-                ':codice' => (integer) $data[3],
+            if(!$db->query('select id from arc_modelli_classifica where classificazione = :classificazione and descrizione = :descrizione',[
                 ':classificazione' => $data[1],
                 ':descrizione' => $classifica_des2,
+            ])->fetchColumn()){
+                $db->query('insert into arc_modelli_classifica (codice, classificazione , descrizione) values (:codice, :classificazione , :descrizione)',[
+                    ':codice' => (integer) $data[3],
+                    ':classificazione' => $data[1],
+                    ':descrizione' => $classifica_des2,
 //                ':descrizione' => $foundPrefix ? trim($match[2],' -') : trim($data[2]),
-            ]);
+                ]);
+            }
         }
     }
     fclose($handle);
