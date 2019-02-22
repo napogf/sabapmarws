@@ -240,13 +240,15 @@ class formPratica extends formExtended
         print('<div dojoType="dijit.form.FilteringSelect" style="width: 400px;" ID="SEL_ESITO"
 								store="testJsonPhp"
 								labelAttr="DESCRIPTION"
-                                queryExpr="*${0}*"
+                                queryExpr="${0}*"
     							searchDelay="500" 
     							autocomplete="false" 
 								searchAttr="DESCRIPTION"
 								name="ESITO_ID" ' . 'value="' . $this->_FormFields['ESITO_ID']->GetValue() . '" ' . '></div>');
 
+
         print('<br>');
+        $this->_FormFields['FALDONE']->showDivField();
 
         if ($this->_FormFields['SCADENZA']->GetValue() > ' ') {
 
