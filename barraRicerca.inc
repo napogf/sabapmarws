@@ -88,6 +88,7 @@ if (isSet($_SESSION['barraRicerca']['keyword']) and ($_SESSION['barraRicerca']['
 	$whereClause .= ' and ((pr.cognome REGEXP \''.$_SESSION['barraRicerca']['keyword'].'\') or ' .
 												'(pr.oggetto REGEXP \''.$_SESSION['barraRicerca']['keyword'].'\') or ' .
 												'(pr.comuneogg REGEXP \''.$_SESSION['barraRicerca']['keyword'].'\') or ' .
+												'(pr.NUMERORIFERIMENTO REGEXP \''.$_SESSION['barraRicerca']['keyword'].'\') or ' .
 												'(pr.pnome REGEXP \''.$_SESSION['barraRicerca']['keyword'].'\') ' .
 	') ';
 }
@@ -155,7 +156,7 @@ if($_SESSION['barraRicerca']['filter'] == 'mancata_consegna'){
 		'></div>');
 
 		print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
-		'url="xml/jsonSql.php?sql=select distinct am.MODELLO,concat(am.classificazione,\'-\',am.description) as DESCRIPTION  from arc_modelli am order by 2" ' .
+		'url="xml/jsonSql.php?sql=select distinct am.MODELLO, am.DESCRIPTION  from arc_modelli am order by 2" ' .
 		'jsId="selModello" ' .
 		'></div>');
 		print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
@@ -174,13 +175,13 @@ if($_SESSION['barraRicerca']['filter'] == 'mancata_consegna'){
 		'></div>');
 if(!isAdmin){
 	print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
-			'url="xml/jsonSql.php?nullValue=Y&sql=select ao.* from arc_organizzazione ao right join user_uo_ref uor on (uor.uoid = ao.uoid) where ao.uoid is not null and uor.user_id= '.$_SESSION['sess_uid'].'" ' .
+			'url="xml/jsonSql.php?nullValue=Y&sql=select ao.* from arc_organizzazione ao right join user_uo_ref uor on (uor.uoid = ao.uoid) where ao.uoid is not null and uor.user_id= '.$_SESSION['sess_uid'].' order by description" ' .
 			'jsId="selOrg" ' .
 			'></div>');
 
 } else {
 	print ('<div dojoType="dojo.data.ItemFileReadStore" ' .
-			'url="xml/jsonSql.php?nullValue=Y&sql=select ao.* from arc_organizzazione ao " ' .
+			'url="xml/jsonSql.php?nullValue=Y&sql=select ao.* from arc_organizzazione ao order by description" ' .
 			'jsId="selOrg" ' .
 			'></div>');
 
@@ -201,7 +202,7 @@ print('</div>');
 
 		print('<span dojoType="dijit.Tooltip" id ="SearchHelp" connectId="Search" style="display:none;">' .
 				'<div class="djToolTipContainer" >Inserisci un testo libero da cercare nei campi:<br>' .
-				'Oggetto Espi, Oggetto, Comune Mittente</div></span>');
+				'Oggetto Espi, Oggetto, Comune Mittente, Numero riferimento</div></span>');
 
 
 	print('<div style="margin-left:20px;" >' ."\n".

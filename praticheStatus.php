@@ -130,8 +130,21 @@ class myhtmlETable extends htmlETable {
 					case 'PRATICA_ID':
                         $row = '<td>';
                         if($this->GetColValue('USCITA',$i) > '0000-00-00' and !empty($this->GetColValue('numeroregistrazione',$i))){
-                            $row .= '<img src="graphics/vcard.png" style="cursor: pointer" onclick="editPratica(' . $this->GetColValue('PRATICA_ID',$i) . ')" title="Visualizza pratica" >';
-                        } else {
+							$row .= '<span id="prClosed' . $this->GetColValue('PRATICA_ID',$i)  . '"><img src="graphics/vcard.png" style="cursor: pointer" onclick="editPratica(' . $this->GetColValue('PRATICA_ID',$i)  . ')" title="Visualizza pratica" ></span>' .
+								'<span dojoType="dijit.Tooltip" id="ttprClosed' . $this->GetColValue('PRATICA_ID',$i)  . '" connectId="prClosed' . $this->GetColValue('PRATICA_ID',$i)  . '" style="display:none;">' .
+								'<div class="djToolTipContainer" >' .
+								'<fieldset ><legend style="border: none; background-color: white; ">Chiusura Pratica</legend>' .
+								'<LABEL>Data Uscita</LABEL>' . $this->GetColValue('USCITA',$i)  . '<BR/>' .
+								'<LABEL>Protocollo Uscita</LABEL>' . $this->GetColValue('numeroregistrazione',$i)  . '<BR/>' .
+								'<LABEL>Esito</LABEL>' . $this->GetColValue('ESITO',$i)  . '<BR/>' .
+								'<LABEL>Oggetto</LABEL>' . $this->GetColValue('COMUNEOGG',$i)  . '<BR/>' .
+								'<LABEL>Note</LABEL>' . $this->GetColValue('NOTE',$i)  . '<BR/>' .
+								'<LABEL>Faldone</LABEL>' . $this->GetColValue('FALDONE',$i)  . '<BR/>' .
+								'</fieldset>' .
+								'</div>';
+						} else {
+
+
                             $row .= '<img src="graphics/application_edit.png" style="cursor: pointer" onclick="editPratica(' . $this->GetColValue('PRATICA_ID',$i) . ')" title="Gestione della Pratica" >';
                         }
                         $row .= '</td>';
@@ -319,6 +332,10 @@ $serviceQuery='select SQL_CALC_FOUND_ROWS distinct pr.PRATICA_ID,
 						'pr.pratica_id as "Vincoli", ' .
 						'pr.USCITA, ' .
 						'pr.MAIL_SENT_ID, ' .
+						'pr.COMUNEOGG, ' .
+						'pr.NOTE, ' .
+						'pr.FALDONE, ' .
+						'ae.description as ESITO, ' .
 						' "pec" as pec, ' .
 						' group_concat(ao.description SEPARATOR \', \') as UO, ' .
 						'(case ' .
@@ -379,6 +396,10 @@ if ($serviceTable->getTableRows()>0) {
 	$serviceTable->HideCol('Ufficio');
 	$serviceTable->HideCol('allarme');
 	$serviceTable->HideCol('MAIL_SENT_ID');
+	$serviceTable->HideCol('ESITO');
+	$serviceTable->HideCol('COMUNEOGG');
+	$serviceTable->HideCol('NOTE');
+	$serviceTable->HideCol('FALDONE');
 //	$serviceTable->HideCol('Alla firma');
 //	$serviceTable->HideCol('Al funz.');
 //	$serviceTable->HideCol('USCITA');
