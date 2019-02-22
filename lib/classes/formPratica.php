@@ -215,7 +215,7 @@ class formPratica extends formExtended
         // $this->_FormFields['ESITO_ID']->showDivField();
 
         print('<div dojoType="dojo.data.ItemFileReadStore" ' .
-            'url="xml/jsonSql.php?sql=select user_id as ID, trim(concat(first_name,\' \',last_name)) as DESCRIPTION from sys_users order by 2" ' . 'jsId="responsabileId" ' . '/>');
+            'url="xml/jsonSql.php?sql=select user_id as ID, trim(concat(last_name,\' \',first_name)) as DESCRIPTION from sys_users order by 2" ' . 'jsId="responsabileId" ' . '/>');
 
 
         print('<label for="RESPONSABILE_ID">Responsabile</label>');
