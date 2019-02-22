@@ -347,25 +347,17 @@ class formPratica extends formExtended
                     <button dojoType="dijit.form.Button" id="associaProgetto" value="' . $this->_FormFields['PRATICA_ID']->GetValue() . '" ><i class="fa fa-link"> </i>&nbsp;Associa ad un Fascicolo esistente</button>
                 </td><td>');
 
-                print('<div dojoType="dojo.data.ItemFileReadStore" ' .
-                    'url="xml/jsonSql.php?sql=select PROJECT_ID as ITEM, DESCRIPTION as DESCRIPTION from arc_pratiche_prj " ' .
+//                print('<div dojoType="dojo.data.ItemFileReadStore" ' .
+//                    'url="xml/jsonSql.php?sql=select PROJECT_ID as ITEM, DESCRIPTION as DESCRIPTION from arc_pratiche_prj " ' .
+//                    'jsId="prjRicerca" ' .
+//                    '></div>');
+
+                print('<div dojoType="dojox.data.QueryReadStore" ' .
+                    'url="xml/jsonRicercaProgetto.php" ' .
                     'jsId="prjRicerca" ' .
                     '></div>');
 
-
-                print('<div dojoType="dijit.form.FilteringSelect"  ' .
-                    'store="prjRicerca" searchAttr="DESCRIPTION" ' .
-//                ' pageSize="50" ' .
-                    ' autoComplete="false" ' .
-                    ' required="false" ' .
-                    'name="ricercaProgetto" ' .
-                    'id="ricercaProgetto" ' .
-                    ' value="" ' .
-                    ' queryExpr= "${0}*", ' .
-                    ' style="width:500px;" ' .
-                     ' searchDelay="1000" ' .
-                    '></div>');
-
+                print('<input id="ricercaProgetto" >');
 
                 print('</td></tr>');
                 print('<tr>

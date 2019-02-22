@@ -127,6 +127,21 @@ dojo.addOnLoad(function() {
     }, "selDocuments");
 
 
+
+    var ricercaProgetto = new dijit.form.FilteringSelect({
+        store : prjRicerca,
+        required: false,
+        labelAttr : 'DESCRIPTION',
+        searchAttr : 'DESCRIPTION',
+        name : "ricercaProgetto",
+        autoComplete : false,
+        style : "width: 500px;",
+        id : "ricercaProgetto",
+        searchDelay: 1000,
+
+    }, "ricercaProgetto");
+
+
     // var OGG_PROV = new dijit.form.FilteringSelect({
     //     store : OggProvince,
     //     labelAttr : 'PROVINCIA',
