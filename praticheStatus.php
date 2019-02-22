@@ -400,6 +400,7 @@ if ($serviceTable->getTableRows()>0) {
 	$serviceTable->HideCol('COMUNEOGG');
 	$serviceTable->HideCol('NOTE');
 	$serviceTable->HideCol('FALDONE');
+	$serviceTable->HideCol('Vincoli');
 //	$serviceTable->HideCol('Alla firma');
 //	$serviceTable->HideCol('Al funz.');
 //	$serviceTable->HideCol('USCITA');

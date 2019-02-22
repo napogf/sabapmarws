@@ -112,7 +112,6 @@ dojo.addOnLoad(function() {
 
 
 
-
     var selDocuments = new dijit.form.FilteringSelect({
         store : sDocumenti,
         labelAttr : 'DESCRIPTION',
@@ -128,34 +127,35 @@ dojo.addOnLoad(function() {
     }, "selDocuments");
 
 
-    new dijit.form.FilteringSelect({
-            store: fascicoloStore,
-            labelAttr: 'description',
-            searchAttr: 'description',
-            required: false,
-            name: "fascicolo",
-            autoComplete: true,
-            style: "width: 400px;",
-            id: "fascicolo",
-
-        },
-        "fascicolo");
-
-
-
-    new dijit.form.FilteringSelect({
-            store: livelloStore,
-            labelAttr: 'descrizione',
-            searchAttr: 'descrizione',
-            valueAttr: 'codice',
-            name: "classifica2",
-            autoComplete: true,
-            style: "width: 400px;",
-            id: "classifica2",
-            // query : { classificazione : "*"},
-        },
-        "classifica2");
-
+    // var OGG_PROV = new dijit.form.FilteringSelect({
+    //     store : OggProvince,
+    //     labelAttr : 'PROVINCIA',
+    //     searchAttr : 'SIGLA',
+    //     value : dojo.byId('OGG_PROV').value,
+    //     name : "OGG_PROV",
+    //     autoComplete : true,
+    //     style : "width: 250px;",
+    //     id : "OGG_PROV",
+    //     onChange : function(OGG_PROV) {
+    //         dijit.byId('OGG_COMUNE').query.PROVINCIA = dijit.byId('OGG_PROV').item.SIGLA[0];
+    //         dijit.byId('OGG_COMUNE').attr('value',null);
+    //         return true;
+    //     }
+    // }, "OGG_PROV");
+    //
+    // var OGG_COMUNE = new dijit.form.FilteringSelect({
+    //     store : OggComuni,
+    //     labelAttr : 'COMUNE',
+    //     searchAttr : 'COMUNE',
+    //     value : dojo.byId('OGG_COMUNE').value,
+    //     name : "OGG_COMUNE",
+    //     autoComplete : true,
+    //     style : "width: 250px;",
+    //     query : {
+    //         PROVINCIA : "*"
+    //     },
+    //     id : "OGG_COMUNE"
+    // }, "OGG_COMUNE");
 
     dojo.query('textarea[name="OGGETTO"]').attr('readonly', 'readonly');
     dojo.connect(dojo.byId('RicercaMittenteButton'), 'onclick', function() {

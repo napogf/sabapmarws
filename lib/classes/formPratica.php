@@ -361,9 +361,9 @@ class formPratica extends formExtended
                     'name="ricercaProgetto" ' .
                     'id="ricercaProgetto" ' .
                     ' value="" ' .
-                    ' queryExpr= "*${0}*", ' .
+                    ' queryExpr= "${0}*", ' .
                     ' style="width:500px;" ' .
-                    // ' searchDelay="1000" ' .
+                     ' searchDelay="1000" ' .
                     '></div>');
 
 
